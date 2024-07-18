@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
                 e.printStackTrace()
             }
         }
-        binding.ivProfile.setOnClickListener {
+        binding.cardName.setOnClickListener {
             val toHistory = HomeFragmentDirections.actionHomeFragmentToProfileFragment()
             findNavController().navigate(toHistory)
         }

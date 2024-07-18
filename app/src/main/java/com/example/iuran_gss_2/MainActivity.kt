@@ -11,11 +11,9 @@ import com.example.iuran_gss_2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navHostFragment: NavHostFragment
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ActivityCompat.requestPermissions(
@@ -23,7 +21,11 @@ class MainActivity : AppCompatActivity() {
                 arrayOf(Manifest.permission.POST_NOTIFICATIONS), 0
             )
         }
-        navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.mainContainer) as NavHostFragment
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainContainer)
+        if (navHostFragment is NavHostFragment) {
+            navController = navHostFragment.navController
+        }
     }
 }

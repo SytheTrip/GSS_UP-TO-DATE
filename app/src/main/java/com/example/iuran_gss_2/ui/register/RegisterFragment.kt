@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.iuran_gss_2.R
 import com.example.iuran_gss_2.databinding.FragmentRegisterBinding
 import com.example.iuran_gss_2.utils.verifyRegisterInput
@@ -36,7 +37,8 @@ class RegisterFragment : Fragment() {
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
             if(verifyRegisterInput(name,address,blok,handphone,email,password)) {
-                RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()
+                val toHome =  RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()
+                findNavController().navigate(toHome)
             } else {
                 Snackbar.make(requireView(), "Harus di isi terlebih dahulu", Toast.LENGTH_SHORT).show()
             }

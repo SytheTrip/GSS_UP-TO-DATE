@@ -109,6 +109,7 @@
         android:paddingBottom="4dp"
         android:paddingStart="48dp"
         android:paddingEnd="48dp"
+        android:textColor="@color/white"
         android:layout_marginTop="@dimen/constraint"
         android:backgroundTint="@color/primary"
         app:layout_constraintStart_toStartOf="@id/tanggal_layout"

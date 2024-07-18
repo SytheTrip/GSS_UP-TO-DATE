@@ -99,6 +99,12 @@
             app:destination="@id/sendNotificationFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_aktifitasFragment"
+            app:destination="@id/aktifitasFragment" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/aktifitasFragment"

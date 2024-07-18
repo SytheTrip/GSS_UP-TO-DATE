@@ -180,6 +180,7 @@
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
                 android:backgroundTint="@color/primary"
+                android:textColor="@color/white"
                 android:layout_marginEnd="@dimen/constraint"
                 android:layout_marginBottom="@dimen/constraint"
                 app:layout_constraintEnd_toEndOf="parent"

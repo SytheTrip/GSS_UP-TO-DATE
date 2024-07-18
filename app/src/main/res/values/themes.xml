@@ -3,6 +3,9 @@
     <style name="Base.Theme.Iuran_GSS_2" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="backgroundColor">@color/white</item>
+        <item name="colorSecondary">@color/secondary</item>
     </style>
 
     <style name="Theme.Iuran_GSS_2" parent="Base.Theme.Iuran_GSS_2" />

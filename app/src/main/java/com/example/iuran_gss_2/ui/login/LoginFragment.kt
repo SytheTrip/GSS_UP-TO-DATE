@@ -21,6 +21,13 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigate()
+        observeData()
+    }
+
+    private fun observeData() {
+        binding.btnLogin.setOnClickListener {
+            goHome()
+        }
     }
 
     private fun navigate() {
@@ -32,6 +39,15 @@ class LoginFragment : Fragment() {
             val toAdmin = LoginFragmentDirections.actionLoginFragmentToHomeAdminFragment()
             findNavController().navigate(toAdmin)
         }
+    }
+
+    private fun goHome() {
+        val toHome = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+        findNavController().navigate(toHome)
+    }
+    private fun goAdmin() {
+        val toAdmin = LoginFragmentDirections.actionLoginFragmentToHomeAdminFragment()
+        findNavController().navigate(toAdmin)
     }
 
 }

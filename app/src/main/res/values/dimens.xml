@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_smallM">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">24sp</dimen>
+
+
+<!--    420dp -->
+    <dimen name="width_card">170</dimen>
+    <dimen name="height_card">120</dimen>
+    <dimen name="profile_home">50dp</dimen>
+    <dimen name="image_logo">300dp</dimen>
+    <dimen name="image_logo_login">250dp</dimen>
+    <dimen name="width_button_onboard">88dp</dimen>
+    <dimen name="image_profile">100dp</dimen>
+    <dimen name="text_qris">18sp</dimen>
+    <dimen name="constraint">16dp</dimen>
+</resources>

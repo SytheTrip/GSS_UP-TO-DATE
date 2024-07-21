@@ -48,5 +48,21 @@
     <string name="isi">Isi</string>
     <string name="kirim">Kirim</string>
     <string name="dummy_date">17/08/24</string>
+    <string name="email_already_taken">Email sudah digunakan</string>
+    <string name="create_transaction_failed">Gagal membuat transaksi</string>
+    <string name="get_transaction_failed">Gagal mengambil transaksi</string>
+    <string name="get_username_failed">Gagal mengambil username</string>
+    <string name="get_profile_failed">Gagal mengambil profile</string>
+
     <string name="hari_kemerdekaan">Hari Kemerdekaan</string>
+
+    <string name="invalid_login">Email atau Password anda salah!</string>
+
+<!--    -->
+    <string name="errorEmail">Format email anda tidak valid</string>
+    <string name="errorName">Nama tidak boleh mengandung angka atau simbol</string>
+    <string name="errorPass">Password kurang dari 8</string>
+    <string name="description_bukti">Gambar bukti pembayaran</string>
+    <string name="description_close">Tutup</string>
+    <string name="description_send">Mengirim Bukti</string>
 </resources>

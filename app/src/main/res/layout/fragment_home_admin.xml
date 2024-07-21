@@ -7,7 +7,18 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.admin.home.HomeAdminFragment">
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_name"

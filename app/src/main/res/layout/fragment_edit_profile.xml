@@ -8,6 +8,19 @@
     android:background="@color/white"
     tools:context=".ui.profile.EditProfileFragment">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/btn_back"
@@ -68,9 +81,8 @@
         app:layout_constraintTop_toBottomOf="@id/tv_profile"
 
         />
-
     <!--    Nama lengkap-->
-    <com.google.android.material.textfield.TextInputLayout
+    <com.example.iuran_gss_2.customview.MyEditText
         android:id="@+id/name_layout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
@@ -78,103 +90,80 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:hint="@string/hint_name"
+        android:background="@drawable/custom_input"
+        android:padding="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/address_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_profile">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_name" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile"/>
 
     <!--    Nomor rumah-->
-    <com.google.android.material.textfield.TextInputLayout
+    <com.example.iuran_gss_2.customview.MyEditText
         android:id="@+id/address_layout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:hint="@string/hint_address"
+        android:background="@drawable/custom_input"
+        android:padding="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/bloc_layout"
         app:layout_constraintEnd_toEndOf="@id/name_layout"
         app:layout_constraintStart_toStartOf="@id/name_layout"
-        app:layout_constraintTop_toBottomOf="@+id/name_layout">
+        app:layout_constraintTop_toBottomOf="@+id/name_layout"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/address_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_address" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <!--    Bloc rumah-->
-    <com.google.android.material.textfield.TextInputLayout
+    <com.example.iuran_gss_2.customview.MyEditText
         android:id="@+id/bloc_layout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:hint="@string/hint_bloc"
+        android:background="@drawable/custom_input"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/handphone_layout"
         app:layout_constraintEnd_toEndOf="@id/address_layout"
         app:layout_constraintStart_toStartOf="@id/address_layout"
-        app:layout_constraintTop_toBottomOf="@+id/address_layout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/bloc_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_bloc" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/address_layout"/>
 
     <!--    Nomor Handphone-->
-    <com.google.android.material.textfield.TextInputLayout
+    <com.example.iuran_gss_2.customview.MyEditText
         android:id="@+id/handphone_layout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:hint="@string/hint_handphone"
+        android:inputType="phone"
+        android:background="@drawable/custom_input"
+        android:padding="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/email_layout"
         app:layout_constraintEnd_toEndOf="@id/bloc_layout"
         app:layout_constraintStart_toStartOf="@id/bloc_layout"
-        app:layout_constraintTop_toBottomOf="@+id/bloc_layout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/handphone_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_handphone" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/bloc_layout"/>
 
     <!--Email-->
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:id="@+id/email_layout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:hint="@string/hint_email"
+        android:background="@drawable/custom_input"
+        android:padding="12dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/handphone_layout"
         app:layout_constraintStart_toStartOf="@id/handphone_layout"
-        app:layout_constraintTop_toBottomOf="@+id/handphone_layout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/handphone_layout"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

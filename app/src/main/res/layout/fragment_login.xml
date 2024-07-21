@@ -9,6 +9,7 @@
     tools:context=".ui.login.LoginFragment">
 
 
+
     <ImageView
         android:id="@+id/iv_masuk"
         android:layout_width="@dimen/image_logo_login"
@@ -37,53 +38,59 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--Email-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_layout"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+    <com.example.iuran_gss_2.customview.MyEditText
+        android:id="@+id/email_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:drawablePadding="12dp"
+        android:padding="10dp"
+        android:textSize="16sp"
+        app:isEmail="true"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:hint="@string/hint_email"
+        android:background="@drawable/custom_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_masuk">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:drawableStart="@drawable/baseline_email_24"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/tv_masuk"/>
 
     <!--    Password-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_layout"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+    <com.example.iuran_gss_2.customview.MyEditText
+        android:id="@+id/password_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_lock_icon"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@id/email_layout"
-        app:layout_constraintEnd_toEndOf="@id/email_layout"
-        app:layout_constraintTop_toBottomOf="@+id/email_layout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:drawableStart="@drawable/baseline_lock_24"
-            android:drawableEnd="@drawable/baseline_visibility_off_24"
-            android:hint="@string/hint_password"
-            android:inputType="textPassword" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:drawablePadding="12dp"
+        android:padding="10dp"
+        android:textSize="16sp"
+        app:isPassword="true"
+        android:inputType="textPassword"
+        android:hint="@string/hint_password"
+        app:layout_constraintStart_toStartOf="@id/email_input"
+        app:layout_constraintEnd_toEndOf="@id/email_input"
+        app:layout_constraintTop_toBottomOf="@+id/email_input"/>
 
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
         android:layout_width="0dp"
@@ -93,25 +100,11 @@
         android:text="@string/masuk"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:textStyle="bold"
-        app:cornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="@id/password_layout"
-        app:layout_constraintStart_toStartOf="@id/password_layout"
-        app:layout_constraintTop_toBottomOf="@id/password_layout" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_admin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/primary"
-        android:text="Admin"
-        android:textColor="@color/white"
-        android:textSize="18sp"
         android:textStyle="bold"
         app:cornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="@id/password_layout"
-        app:layout_constraintStart_toStartOf="@id/password_layout"
-        app:layout_constraintTop_toBottomOf="@id/btn_login" />
+        app:layout_constraintEnd_toEndOf="@id/password_input"
+        app:layout_constraintStart_toStartOf="@id/password_input"
+        app:layout_constraintTop_toBottomOf="@id/password_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

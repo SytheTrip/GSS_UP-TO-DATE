@@ -14,9 +14,12 @@ fun verifyRegisterInput(
     email: String,
     password: String,
 ): Boolean {
-    return if (!name.isNullOrEmpty() && !address.isNullOrEmpty() && !blok.isNullOrEmpty() && !handphone.isNullOrEmpty() && !email.isNullOrEmpty() && !password.isNullOrEmpty()) {
-        true
-    } else {
-        false
-    }
+    return name.isNotEmpty() && address.isNotEmpty() && blok.isNotEmpty() && handphone.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()
+}
+
+fun verifyLoginInput(
+    email : String,
+    password : String,
+): Boolean {
+    return email.isNotEmpty() && password.isNotEmpty()
 }

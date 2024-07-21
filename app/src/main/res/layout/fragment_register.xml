@@ -7,7 +7,18 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.register.RegisterFragment">
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
     <TextView
         android:id="@+id/tv_register"
         android:layout_width="wrap_content"
@@ -108,47 +119,47 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--Email-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_layout"
+    <com.example.iuran_gss_2.customview.MyEditText
+        android:id="@+id/email_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:background="@drawable/custom_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:drawablePadding="12dp"
+        android:padding="10dp"
+        android:textSize="16sp"
+        app:isPassword="true"
+        android:hint="@string/hint_email"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@id/handphone_layout"
         app:layout_constraintStart_toStartOf="@id/handphone_layout"
-        app:layout_constraintTop_toBottomOf="@+id/handphone_layout">
+        app:layout_constraintTop_toBottomOf="@+id/handphone_layout"
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress" />
+        />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
     <!--    Password-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_layout"
+    <com.example.iuran_gss_2.customview.MyEditText
+        android:id="@+id/password_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@id/email_layout"
-        app:layout_constraintStart_toStartOf="@id/email_layout"
-        app:layout_constraintTop_toBottomOf="@+id/email_layout">
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:drawablePadding="12dp"
+        android:padding="10dp"
+        android:textSize="16sp"
+        app:isPassword="true"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@id/email_input"
+        app:layout_constraintStart_toStartOf="@id/email_input"
+        app:layout_constraintTop_toBottomOf="@+id/email_input"
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_password"
-            android:inputType="textPassword" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register"
@@ -163,8 +174,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:cornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="@id/password_layout"
-        app:layout_constraintStart_toStartOf="@id/password_layout"
-        app:layout_constraintTop_toBottomOf="@id/password_layout" />
+        app:layout_constraintEnd_toEndOf="@id/password_input"
+        app:layout_constraintStart_toStartOf="@id/password_input"
+        app:layout_constraintTop_toBottomOf="@id/password_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

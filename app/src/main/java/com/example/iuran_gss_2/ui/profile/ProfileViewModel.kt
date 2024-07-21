@@ -12,5 +12,6 @@ class ProfileViewModel(private val repository: IuranRepository): ViewModel() {
 
     fun getProfile(token : String) : LiveData<Event<ProfileResponse>> = repository.getProfile(token)
 
+    fun logout() = repository.logOut()
     fun getData() : DataHolder = repository.getData()
 }

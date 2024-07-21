@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/onboardingFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/onboardingFragment"
@@ -83,6 +83,10 @@
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_profileFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/homeAdminFragment"
@@ -136,7 +140,11 @@
         android:id="@+id/verifikasiFragment"
         android:name="com.example.iuran_gss_2.ui.admin.verifikasi.VerifikasiFragment"
         android:label="fragment_verifikasi"
-        tools:layout="@layout/fragment_verifikasi" />
+        tools:layout="@layout/fragment_verifikasi" >
+        <argument
+            android:name="tNumber"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.iuran_gss_2.ui.profile.EditProfileFragment"
@@ -147,5 +155,20 @@
             app:destination="@id/homeFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.iuran_gss_2.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeAdminFragment"
+            app:destination="@id/homeAdminFragment" />
     </fragment>
 </navigation>

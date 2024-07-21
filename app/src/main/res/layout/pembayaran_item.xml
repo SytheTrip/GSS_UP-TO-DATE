@@ -38,8 +38,20 @@
             android:text="@string/nominal_input"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_noPembayaran"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/constraint"
+            android:text="Status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nominal"
             app:layout_constraintBottom_toBottomOf="parent"
             />
+
 
         <ImageView
             android:id="@+id/iv_arrow"

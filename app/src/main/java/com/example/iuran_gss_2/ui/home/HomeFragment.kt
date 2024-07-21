@@ -104,13 +104,12 @@ class HomeFragment : Fragment() {
             viewModel.getUsername(account.token.toString()).observe(viewLifecycleOwner) { data ->
                 when (data) {
                     is Event.Success -> {
-
                         binding.progressBar.visibility = View.GONE
-                        binding.tvName.text = data.data.data.toString()
-                        Log.d("Testing", data.toString())
+                        binding.tvName.text = data.data.data
                     }
 
                     is Event.Error -> {
+                        binding.progressBar.visibility = View.GONE
                         Snackbar.make(
                             requireView(),
                             requireContext().getString(R.string.invalid_login),

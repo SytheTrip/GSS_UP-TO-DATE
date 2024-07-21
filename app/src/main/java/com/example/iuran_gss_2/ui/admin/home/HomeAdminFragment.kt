@@ -30,32 +30,6 @@ class HomeAdminFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigate()
-        getUsername()
-    }
-
-    private fun getUsername() {
-        viewModel.getUsername().observe(viewLifecycleOwner) { data ->
-            when (data) {
-                is Event.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.tvName.text = data.data.data
-                    Log.d("Testing", data.toString())
-                }
-
-                is Event.Error -> {
-                    Snackbar.make(
-                        requireView(),
-                        requireContext().getString(R.string.invalid_login),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                else -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    Log.d("Event ", data.toString())
-                }
-            }
-        }
     }
 
     private fun navigate() {

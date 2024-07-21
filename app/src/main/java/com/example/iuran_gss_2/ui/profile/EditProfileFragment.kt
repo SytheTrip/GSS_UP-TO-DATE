@@ -22,7 +22,6 @@ class EditProfileFragment : Fragment() {
     private lateinit var noRumah: String
     private lateinit var bloc: String
     private lateinit var noPhone: String
-    private lateinit var email: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,11 +43,10 @@ class EditProfileFragment : Fragment() {
                 is Event.Success -> {
                     val dataProfile = data.data.data
                     binding.apply {
-                        emailLayout.text = dataProfile.email
-                        nameLayout.setText(dataProfile.namaLengkap)
-                        addressLayout.setText(dataProfile.noRumah)
-                        blocLayout.setText(dataProfile.blok)
-                        handphoneLayout.setText(dataProfile.noPhone)
+                        nameInput.setText(dataProfile.namaLengkap)
+                        noRumahInput.setText(dataProfile.noRumah)
+                        blocInput.setText(dataProfile.blok)
+                        handphoneInput.setText(dataProfile.noPhone)
                         progressBar.visibility = View.GONE
                     }
                 }
@@ -75,10 +73,10 @@ class EditProfileFragment : Fragment() {
 
     private fun editProfile() {
         binding.apply {
-            name = nameLayout.text.toString()
-            noRumah = addressLayout.text.toString()
-            bloc = blocLayout.text.toString()
-            noPhone = handphoneLayout.text.toString()
+            name = nameInput.text.toString()
+            noRumah = noRumahInput.text.toString()
+            bloc = blocInput.text.toString()
+            noPhone = handphoneInput.text.toString()
         }
         if (name.isNotEmpty() && noRumah.isNotEmpty() && bloc.isNotEmpty() && noPhone.isNotEmpty()) {
             val request = EditProfileRequest(

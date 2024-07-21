@@ -83,7 +83,7 @@
         />
     <!--    Nama lengkap-->
     <com.example.iuran_gss_2.customview.MyEditText
-        android:id="@+id/name_layout"
+        android:id="@+id/name_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -94,14 +94,14 @@
         android:background="@drawable/custom_input"
         android:padding="12dp"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/address_layout"
+        app:layout_constraintBottom_toTopOf="@+id/no_rumah_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_profile"/>
 
     <!--    Nomor rumah-->
     <com.example.iuran_gss_2.customview.MyEditText
-        android:id="@+id/address_layout"
+        android:id="@+id/no_rumah_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -110,15 +110,15 @@
         android:background="@drawable/custom_input"
         android:padding="12dp"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/bloc_layout"
-        app:layout_constraintEnd_toEndOf="@id/name_layout"
-        app:layout_constraintStart_toStartOf="@id/name_layout"
-        app:layout_constraintTop_toBottomOf="@+id/name_layout"/>
+        app:layout_constraintBottom_toTopOf="@+id/bloc_input"
+        app:layout_constraintEnd_toEndOf="@id/name_input"
+        app:layout_constraintStart_toStartOf="@id/name_input"
+        app:layout_constraintTop_toBottomOf="@+id/name_input"/>
 
 
     <!--    Bloc rumah-->
     <com.example.iuran_gss_2.customview.MyEditText
-        android:id="@+id/bloc_layout"
+        android:id="@+id/bloc_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -128,14 +128,14 @@
         android:inputType="text"
         android:padding="12dp"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/handphone_layout"
-        app:layout_constraintEnd_toEndOf="@id/address_layout"
-        app:layout_constraintStart_toStartOf="@id/address_layout"
-        app:layout_constraintTop_toBottomOf="@+id/address_layout"/>
+        app:layout_constraintBottom_toTopOf="@id/handphone_input"
+        app:layout_constraintEnd_toEndOf="@id/no_rumah_input"
+        app:layout_constraintStart_toStartOf="@id/no_rumah_input"
+        app:layout_constraintTop_toBottomOf="@+id/no_rumah_input"/>
 
     <!--    Nomor Handphone-->
     <com.example.iuran_gss_2.customview.MyEditText
-        android:id="@+id/handphone_layout"
+        android:id="@+id/handphone_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -146,9 +146,9 @@
         android:padding="12dp"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/email_layout"
-        app:layout_constraintEnd_toEndOf="@id/bloc_layout"
-        app:layout_constraintStart_toStartOf="@id/bloc_layout"
-        app:layout_constraintTop_toBottomOf="@+id/bloc_layout"/>
+        app:layout_constraintEnd_toEndOf="@id/bloc_input"
+        app:layout_constraintStart_toStartOf="@id/bloc_input"
+        app:layout_constraintTop_toBottomOf="@+id/bloc_input"/>
 
     <!--Email-->
     <TextView
@@ -161,9 +161,9 @@
         android:background="@drawable/custom_input"
         android:padding="12dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/handphone_layout"
-        app:layout_constraintStart_toStartOf="@id/handphone_layout"
-        app:layout_constraintTop_toBottomOf="@+id/handphone_layout"/>
+        app:layout_constraintEnd_toEndOf="@id/handphone_input"
+        app:layout_constraintStart_toStartOf="@id/handphone_input"
+        app:layout_constraintTop_toBottomOf="@+id/handphone_input"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

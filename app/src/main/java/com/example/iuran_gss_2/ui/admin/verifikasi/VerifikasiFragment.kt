@@ -1,15 +1,38 @@
 package com.example.iuran_gss_2.ui.admin.verifikasi
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.iuran_gss_2.R
 import com.example.iuran_gss_2.databinding.FragmentVerifikasiBinding
+import com.example.iuran_gss_2.model.local.Event
+import com.example.iuran_gss_2.model.local.TransaksiRequest
+import com.example.iuran_gss_2.model.local.UpdateTransaksiRequest
+import com.example.iuran_gss_2.ui.history.HistoryViewModel
+import com.google.android.material.snackbar.Snackbar
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VerifikasiFragment : Fragment() {
     private lateinit var binding : FragmentVerifikasiBinding
+    private val viewModel: VerifikasiViewModel by viewModel()
+    private lateinit var nama : String
+    private lateinit var tNumber : String
+    private lateinit var noPembayaran : String
+    private lateinit var noRumah : String
+    private lateinit var noPhone : String
+    private lateinit var email : String
+    private lateinit var nominal : String
+    private lateinit var keterangan : String
+    private lateinit var status : String
+
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,6 +43,96 @@ class VerifikasiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        tNumber = arguments?.getString("tNumber").toString()
+        navigate()
+        setupText()
     }
 
+
+    private fun navigate() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+        binding.btnAccept.setOnClickListener {
+            status = "Diterima"
+            updateTransaksi()
+        }
+        binding.btnReject.setOnClickListener {
+            status = "Ditolak"
+            updateTransaksi()
+        }
+    }
+    private fun setupText() {
+        nama = requireContext().getString(R.string.nama_input)
+        noPembayaran = requireContext().getString(R.string.pembayaran_input)
+        noRumah = requireContext().getString(R.string.blok_input)
+        noPhone = requireContext().getString(R.string.telepon_input)
+        email = requireContext().getString(R.string.email_input)
+        nominal = requireContext().getString(R.string.nominal_input)
+        keterangan = requireContext().getString(R.string.keterangan_input)
+        observeData()
+    }
+
+    private fun observeData (){
+        val request = TransaksiRequest(tNumber = tNumber)
+        viewModel.getTransaksi(request).observe(viewLifecycleOwner) { data ->
+            when (data) {
+                is Event.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    val dataTransaksi = data.data.data
+                    binding.apply {
+                        tvNama.text = ("$nama ${dataTransaksi.username}")
+                        tvNoPembayaran.text = ("$nama ${dataTransaksi.tNumber}")
+                        tvBlok.text = ("$nama ")
+                        tvTelpon.text = ("$nama ")
+                        tvEmail.text = ("$nama ${dataTransaksi.email}")
+                        tvNominal.text = ("$nama ${dataTransaksi.harga}")
+                        tvKeterangan.text = ("$nama ${dataTransaksi.keterangan}")
+                    }
+                }
+
+                is Event.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Snackbar.make(
+                        requireView(),
+                        requireContext().getString(R.string.invalid_login),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                else -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    Log.d("Event ", data.toString())
+                }
+            }
+        }
+    }
+
+
+    private fun updateTransaksi() {
+        val request = UpdateTransaksiRequest( tNumber = tNumber , status = status)
+        viewModel.updateTransaksi(request).observe(viewLifecycleOwner) { data ->
+            when (data) {
+                is Event.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    Snackbar.make(requireView(), "Status berhasil diupdate", Toast.LENGTH_SHORT).show()
+                    findNavController().navigateUp()
+                }
+
+                is Event.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Snackbar.make(
+                        requireView(),
+                        requireContext().getString(R.string.invalid_login),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                else -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    Log.d("Event ", data.toString())
+                }
+            }
+        }
+    }
 }

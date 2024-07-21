@@ -13,8 +13,8 @@ data class CreateRequest(
 	@field:SerializedName("email")
 	val email: String,
 
-	@field:SerializedName("alamat")
-	val alamat: String,
+	@field:SerializedName("noRumah")
+	val noRumah: String,
 
 	@field:SerializedName("nama")
 	val nama: String,

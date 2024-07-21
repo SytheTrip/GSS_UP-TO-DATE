@@ -43,13 +43,14 @@ class ProfileFragment : Fragment() {
                     val dataProfile = data.data.data
                     binding.apply {
                         emailLayout.text = dataProfile.email
-                        nameLayout.text = dataProfile.namaLengkap
-                        addressLayout.text = dataProfile.noRumah
-                        blocLayout.text = dataProfile.blok
-                        handphoneLayout.text = dataProfile.noPhone
+                        nameInput.text = dataProfile.namaLengkap
+                        noRumahInput.text = dataProfile.noRumah
+                        blocInput.text = dataProfile.blok
+                        handphoneInput.text = dataProfile.noPhone
                         progressBar.visibility = View.GONE
                     }
                 }
+
                 is Event.Error -> {
                     Snackbar.make(
                         requireView(),
@@ -74,6 +75,12 @@ class ProfileFragment : Fragment() {
         binding.btnEdit.setOnClickListener {
             val toEdit = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
             findNavController().navigate(toEdit)
+        }
+        binding.cardLogout.setOnClickListener {
+            viewModel.logout()
+            val toOnboarding =
+                ProfileFragmentDirections.actionProfileFragmentToOnboardingFragment()
+            findNavController().navigate(toOnboarding)
         }
     }
 

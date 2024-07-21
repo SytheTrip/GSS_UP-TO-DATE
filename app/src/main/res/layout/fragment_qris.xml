@@ -8,6 +8,18 @@
     android:background="@color/white"
     tools:context=".ui.qris.QrisFragment">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/qrisLayout"
@@ -213,8 +225,8 @@
         android:layout_marginTop="128dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="128dp"
-        android:visibility="gone"
         app:cardCornerRadius="12dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -243,7 +255,7 @@
                 android:fontFamily="@font/inter_bold"
                 android:text="UPLOAD FOTO"
                 android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/btn_close"
                 app:layout_constraintEnd_toEndOf="parent"

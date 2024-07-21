@@ -41,7 +41,7 @@
     <string name="blok_input">No.Rumah/Blok :</string>
     <string name="accept">Terima</string>
     <string name="tolak">Tolak</string>
-    <string name="notofikasi">Memberikan informasi</string>
+    <string name="notifikasi">Memberi\nInformasi</string>
     <string name="keterangan">Keterangan</string>
     <string name="tanggal">Tanggal</string>
     <string name="judul">Judul</string>
@@ -58,11 +58,20 @@
 
     <string name="invalid_login">Email atau Password anda salah!</string>
 
-<!--    -->
+    <!--  Login / Register  -->
     <string name="errorEmail">Format email anda tidak valid</string>
     <string name="errorName">Nama tidak boleh mengandung angka atau simbol</string>
     <string name="errorPass">Password kurang dari 8</string>
     <string name="description_bukti">Gambar bukti pembayaran</string>
     <string name="description_close">Tutup</string>
     <string name="description_send">Mengirim Bukti</string>
+    <string name="description_logout">Keluar dari Aplikasi</string>
+    <string name="logout">Keluar</string>
+
+    <!--  List Transaction User  -->
+    <string name="pendingText">Sedang Diproses 1x24 jam</string>
+    <string name="rejectText">Ditolak</string>
+    <string name="acceptText">Diterima</string>
+
+
 </resources>

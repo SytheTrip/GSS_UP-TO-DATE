@@ -7,18 +7,19 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.register.RegisterFragment">
+
     <ProgressBar
         android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:elevation="8dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_register"
         android:layout_width="wrap_content"
@@ -33,110 +34,97 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--    Nama lengkap-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name_layout"
+    <com.example.iuran_gss_2.customview.MyEditText
+        android:id="@+id/name_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/address_layout"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_person_icon"
+        android:drawablePadding="10dp"
+        android:hint="@string/hint_name"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/no_rumah_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_register">
+        app:layout_constraintTop_toBottomOf="@+id/tv_register" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_name" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <!--    Nomor rumah-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/address_layout"
+    <com.example.iuran_gss_2.customview.MyEditText
+        android:id="@+id/no_rumah_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/bloc_layout"
-        app:layout_constraintEnd_toEndOf="@id/name_layout"
-        app:layout_constraintStart_toStartOf="@id/name_layout"
-        app:layout_constraintTop_toBottomOf="@+id/name_layout">
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_house_number"
+        android:drawablePadding="12dp"
+        android:hint="@string/hint_address"
+        android:inputType="number"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/bloc_input"
+        app:layout_constraintEnd_toEndOf="@id/name_input"
+        app:layout_constraintStart_toStartOf="@id/name_input"
+        app:layout_constraintTop_toBottomOf="@+id/name_input" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/address_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_address" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <!--    Bloc rumah-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/bloc_layout"
+    <com.example.iuran_gss_2.customview.MyEditText
+        android:id="@+id/bloc_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@id/handphone_layout"
-        app:layout_constraintEnd_toEndOf="@id/address_layout"
-        app:layout_constraintStart_toStartOf="@id/address_layout"
-        app:layout_constraintTop_toBottomOf="@+id/address_layout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/bloc_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_bloc" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_blok_icon"
+        android:drawablePadding="12dp"
+        android:hint="@string/hint_bloc"
+        android:inputType="number"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/handphone_input"
+        app:layout_constraintEnd_toEndOf="@id/no_rumah_input"
+        app:layout_constraintStart_toStartOf="@id/no_rumah_input"
+        app:layout_constraintTop_toBottomOf="@+id/no_rumah_input" />
 
     <!--    Nomor Handphone-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/handphone_layout"
+    <com.example.iuran_gss_2.customview.MyEditText
+        android:id="@+id/handphone_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/email_layout"
-        app:layout_constraintEnd_toEndOf="@id/bloc_layout"
-        app:layout_constraintStart_toStartOf="@id/bloc_layout"
-        app:layout_constraintTop_toBottomOf="@+id/bloc_layout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/handphone_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:hint="@string/hint_handphone" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_phone_icon"
+        android:drawablePadding="12dp"
+        android:hint="@string/hint_handphone"
+        android:inputType="number"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/email_input"
+        app:layout_constraintEnd_toEndOf="@id/bloc_input"
+        app:layout_constraintStart_toStartOf="@id/bloc_input"
+        app:layout_constraintTop_toBottomOf="@+id/bloc_input" />
 
     <!--Email-->
     <com.example.iuran_gss_2.customview.MyEditText
         android:id="@+id/email_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:background="@drawable/custom_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@drawable/custom_input"
         android:drawableStart="@drawable/custom_email_icon"
         android:drawablePadding="12dp"
+        android:hint="@string/hint_email"
+        android:inputType="textEmailAddress"
         android:padding="10dp"
         android:textSize="16sp"
-        app:isPassword="true"
-        android:hint="@string/hint_email"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@id/handphone_layout"
-        app:layout_constraintStart_toStartOf="@id/handphone_layout"
-        app:layout_constraintTop_toBottomOf="@+id/handphone_layout"
-
+        app:layout_constraintEnd_toEndOf="@id/handphone_input"
+        app:layout_constraintStart_toStartOf="@id/handphone_input"
+        app:layout_constraintTop_toBottomOf="@+id/handphone_input"
         />
 
 
@@ -150,11 +138,11 @@
         android:background="@drawable/custom_input"
         android:drawableStart="@drawable/custom_lock_icon"
         android:drawablePadding="12dp"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
         android:padding="10dp"
         android:textSize="16sp"
         app:isPassword="true"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@id/email_input"
         app:layout_constraintStart_toStartOf="@id/email_input"
         app:layout_constraintTop_toBottomOf="@+id/email_input"
@@ -167,10 +155,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/primary"
-        android:text="@string/register"
-        android:textColor="@color/white"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
+        android:text="@string/register"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:cornerRadius="12dp"

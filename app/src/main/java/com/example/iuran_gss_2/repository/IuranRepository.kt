@@ -7,20 +7,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.iuran_gss_2.R
 import com.example.iuran_gss_2.model.local.CreateRequest
-import com.example.iuran_gss_2.model.local.CreateTransactionRequest
 import com.example.iuran_gss_2.model.local.DataHolder
 import com.example.iuran_gss_2.model.local.EditProfileRequest
 import com.example.iuran_gss_2.model.local.Event
 import com.example.iuran_gss_2.model.local.LoginRequest
+import com.example.iuran_gss_2.model.local.TransaksiRequest
+import com.example.iuran_gss_2.model.local.UpdateTransaksiRequest
+import com.example.iuran_gss_2.model.remote.DataTransaksi
 import com.example.iuran_gss_2.model.remote.GeneralResponse
 import com.example.iuran_gss_2.model.remote.GetAllTransaksiAdminResponse
 import com.example.iuran_gss_2.model.remote.GetAllTransaksiUserResponse
+import com.example.iuran_gss_2.model.remote.GetTransaksiResponse
 import com.example.iuran_gss_2.model.remote.GetUsernameResponse
 import com.example.iuran_gss_2.model.remote.LoginResponse
 import com.example.iuran_gss_2.model.remote.ProfileResponse
 import com.example.iuran_gss_2.model.remote.SimpleResponse
 import com.example.iuran_gss_2.network.ApiService
 import kotlinx.coroutines.Dispatchers
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.json.JSONObject
 
 class IuranRepository(
@@ -57,8 +62,10 @@ class IuranRepository(
         liveData(Dispatchers.IO) {
             emit(Event.Loading)
             try {
+                Log.d("Testing", "Request $request")
                 val response = apiService.login(request)
                 if (response.isSuccessful) {
+                    Log.d("Testing", "Request $response")
                     val data = response.body()
                     data?.let {
                         emit(Event.Success(it))
@@ -78,11 +85,15 @@ class IuranRepository(
             }
         }
 
-    fun createTransaction(request: CreateTransactionRequest): LiveData<Event<SimpleResponse>> =
+    fun createTransaction(
+        token: String,
+        photos: List<MultipartBody.Part>,
+        request: RequestBody
+    ): LiveData<Event<SimpleResponse>> =
         liveData(Dispatchers.IO) {
             emit(Event.Loading)
             try {
-                val response = apiService.createTransaksi(request)
+                val response = apiService.createTransaksi(token, photos, request)
                 if (response.isSuccessful) {
                     val data = response.body()
                     data?.let {
@@ -102,6 +113,61 @@ class IuranRepository(
                 emit(Event.Error(null, context.getString(R.string.create_transaction_failed)))
             }
         }
+
+    fun updateTransaksi(request : UpdateTransaksiRequest) : LiveData<Event<GeneralResponse>> =
+        liveData(Dispatchers.IO) {
+            emit(Event.Loading)
+            try {
+                val account = getData()
+                val response = apiService.updateTransaksi(account.token.toString(),request)
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    data?.let {
+                        emit(Event.Success(it))
+                    }
+                } else {
+                    val error = response.errorBody()?.toString()
+                    if (error != null) {
+                        val jsonObject = JSONObject(error)
+                        val message = jsonObject.getString("message")
+                        emit(Event.Error(null, message))
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.d("Indekosku Repository", "Errornya di API")
+                emit(Event.Error(null, context.getString(R.string.get_transaction_failed)))
+            }
+        }
+
+    fun getTransaksi(request : TransaksiRequest) : LiveData<Event<GetTransaksiResponse>> =
+        liveData(Dispatchers.IO) {
+            emit(Event.Loading)
+            try {
+                val account = getData()
+                val response = apiService.getTransaksi(account.token.toString(),request)
+                Log.d("Testing", response.toString())
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    data?.let {
+                        emit(Event.Success(it))
+                    }
+                } else {
+                    val error = response.errorBody()?.toString()
+                    if (error != null) {
+                        val jsonObject = JSONObject(error)
+                        val message = jsonObject.getString("message")
+                        emit(Event.Error(null, message))
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.d("Indekosku Repository", "Errornya di API")
+                emit(Event.Error(null, context.getString(R.string.get_transaction_failed)))
+            }
+        }
+
+
 
     fun getAllTransaksiAdmin(token: String): LiveData<Event<GetAllTransaksiAdminResponse>> =
         liveData(Dispatchers.IO) {
@@ -158,6 +224,7 @@ class IuranRepository(
             emit(Event.Loading)
             try {
                 val response = apiService.getUsername(token)
+                Log.d("Testing", "token : $token")
                 Log.d("Testing", "response : $response")
                 if (response.isSuccessful) {
                     val data = response.body()
@@ -204,8 +271,8 @@ class IuranRepository(
             }
         }
 
-    fun editProfile(token : String, request : EditProfileRequest): LiveData<Event<GeneralResponse>> =
-        liveData(Dispatchers.IO){
+    fun editProfile(token: String, request: EditProfileRequest): LiveData<Event<GeneralResponse>> =
+        liveData(Dispatchers.IO) {
             emit(Event.Loading)
             try {
                 val response = apiService.updateProfile(token, request)
@@ -228,18 +295,19 @@ class IuranRepository(
                 emit(Event.Error(null, context.getString(R.string.get_profile_failed)))
             }
         }
+
     fun logOut() {
         sharedPreferences.edit().putString("email", null).putString("password", null)
-            .putString("token", null).apply()
+            .putString("token", null).putString("role", null).apply()
     }
 
     fun saveOnboarding(onBoarding: Boolean) {
         sharedPreferences.edit().putBoolean("onboarding_complete", onBoarding).apply()
     }
 
-    fun saveEncryptedValues(email: String, password: String, token: String) {
+    fun saveEncryptedValues(email: String, password: String, token: String, role: String) {
         sharedPreferences.edit().putString("email", email).putString("password", password)
-            .putString("token", token).apply()
+            .putString("token", token).putString("role", role).apply()
         getData()
     }
 
@@ -247,7 +315,8 @@ class IuranRepository(
         val email = sharedPreferences.getString("email", null)
         val password = sharedPreferences.getString("password", null)
         val token = sharedPreferences.getString("token", null)
-        return DataHolder(email, password, token)
+        val role = sharedPreferences.getString("role", null)
+        return DataHolder(email, password, token, role)
     }
 
     suspend fun refreshToken() {
@@ -258,11 +327,19 @@ class IuranRepository(
         if (response.isSuccessful) {
             val data = response.body()
             token += data?.token.toString()
-            saveEncryptedValues(account.email.toString(), account.password.toString(), token)
+            val role = data?.status.toString()
+            saveEncryptedValues(
+                account.email.toString(),
+                account.password.toString(),
+                token,
+                role = role
+            )
         }
     }
 
-    fun getOnboarding(): Boolean {
-        return sharedPreferences.getBoolean("onboarding_complete", false)
-    }
+    fun getOnboarding(): Boolean =
+        sharedPreferences.getBoolean("onboarding_complete", false)
+
+    fun getRole(): String? = sharedPreferences.getString("role", null)
+
 }

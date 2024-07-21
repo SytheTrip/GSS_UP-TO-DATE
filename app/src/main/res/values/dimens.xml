@@ -19,4 +19,5 @@
     <dimen name="image_profile">100dp</dimen>
     <dimen name="text_qris">18sp</dimen>
     <dimen name="constraint">16dp</dimen>
+    <dimen name="history_size">14sp</dimen>
 </resources>

@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/nama_input"
-            android:textSize="18sp"
+            android:textSize="@dimen/history_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="No. Pembayaran : "
-            android:textSize="18sp"
-
+            android:textSize="@dimen/history_size"
+            app:layout_constraintStart_toStartOf="@id/tv_nama"
             app:layout_constraintTop_toBottomOf="@id/tv_nama" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_marginTop="8dp"
 
             android:text="@string/jumlah_input"
-            android:textSize="18sp"
+            android:textSize="@dimen/history_size"
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toBottomOf="@id/tv_noPembayaran" />
@@ -48,13 +48,26 @@
         <TextView
             android:id="@+id/tv_status"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/status"
-            android:textSize="18sp"
+            android:textSize="@dimen/history_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_jumlah"
+            app:layout_constraintTop_toBottomOf="@id/tv_jumlah" />
 
-            />
+        <TextView
+            android:id="@+id/tv_keterangan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/pendingText"
+            android:textColor="@color/pendingColor"
+            android:textSize="@dimen/history_size"
+            app:layout_constraintEnd_toStartOf="@id/btn_request"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_status" />
+
 
         <Button
             android:id="@+id/btn_request"
@@ -63,10 +76,9 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/primary"
             android:text="@string/complain"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="@id/tv_status"
-            app:layout_constraintBottom_toBottomOf="@id/tv_status"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/tv_keterangan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_keterangan" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

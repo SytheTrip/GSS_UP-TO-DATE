@@ -18,8 +18,8 @@ class LoginViewModel(private val repository: IuranRepository) : ViewModel() {
     }
 
 
-    fun saveEncrypted(email: String, password: String, token: String) {
-        repository.saveEncryptedValues(email, password, token)
+    fun saveEncrypted(email: String, password: String, token: String,role : String) {
+        repository.saveEncryptedValues(email, password, token,role)
         Log.d("Testing","Berhasil menyimpan $email $password ")
     }
 }

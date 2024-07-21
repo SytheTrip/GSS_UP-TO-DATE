@@ -4,37 +4,42 @@ import com.google.gson.annotations.SerializedName
 
 data class GetAllTransaksiUserResponse(
 
-	@field:SerializedName("code")
-	val code: Int,
+    @field:SerializedName("code")
+    val code: Int,
 
-	@field:SerializedName("data")
-	val data: DataTransaksiUser,
+    @field:SerializedName("data")
+    val data: ListTransactionUser,
 
-	@field:SerializedName("message")
-	val message: String
+    @field:SerializedName("message")
+    val message: String
 )
 
-data class DataTransaksiUser(
+data class DataTransaction(
 
-	@field:SerializedName("noPhone")
-	val noPhone: String,
+    @field:SerializedName("tNumber")
+    val tNumber: String,
 
-	@field:SerializedName("role")
-	val role: String,
+    @field:SerializedName("keterangan")
+    val keterangan: String,
 
-	@field:SerializedName("blok")
-	val blok: String,
+    @field:SerializedName("harga")
+    val harga: String,
 
-	@field:SerializedName("history")
-	val history: List<String>,
+    @field:SerializedName("namaLengkap")
+    val namaLengkap: String,
 
-	@field:SerializedName("email")
-	val email: String,
+    @field:SerializedName("status")
+    val status: String
+)
 
-	@field:SerializedName("namaLengkap")
-	val namaLengkap: String,
+data class ListTransactionUser(
 
+    @field:SerializedName("listHistory")
+    val listHistory: List<ListHistoryItem>
+)
 
-	@field:SerializedName("alamat")
-	val alamat: String
+data class ListHistoryItem(
+
+    @field:SerializedName("data")
+    val dataTransaction: DataTransaction
 )

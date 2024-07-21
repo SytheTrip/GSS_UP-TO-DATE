@@ -10,13 +10,5 @@ import com.example.iuran_gss_2.repository.IuranRepository
 class HomeAdminViewModel(val repository: IuranRepository) : ViewModel() {
     private lateinit var account: DataHolder
 
-    private fun getAccount() {
-        account = repository.getData()
-    }
-
-    fun getUsername(): LiveData<Event<GetUsernameResponse>> {
-        getAccount()
-        return repository.getUsername(account.token.toString())
-    }
 
 }

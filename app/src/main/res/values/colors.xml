@@ -8,4 +8,8 @@
     <color name="gray">#33CFCFCF</color>
     <color name="red">#FF0000</color>
 
+    <color name="pendingColor">#FF5F00</color>
+    <color name="acceptColor">#53D033</color>
+    <color name="rejectColor">#FF0000</color>
+
 </resources>

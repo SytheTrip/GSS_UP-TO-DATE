@@ -59,7 +59,8 @@ class LoginFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     val dataAkun = data.data
                     token += dataAkun.token
-                    viewModel.saveEncrypted(email, password, token)
+                    val role = dataAkun.status
+                    viewModel.saveEncrypted(email, password, token, role)
                     viewModel.setOnBoarding(true)
                     if (dataAkun.status == "User") {
                         goHome()

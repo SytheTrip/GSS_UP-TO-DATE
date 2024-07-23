@@ -83,7 +83,7 @@
         android:drawableStart="@drawable/custom_blok_icon"
         android:drawablePadding="12dp"
         android:hint="@string/hint_bloc"
-        android:inputType="number"
+        android:inputType="text"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@id/handphone_input"
         app:layout_constraintEnd_toEndOf="@id/no_rumah_input"

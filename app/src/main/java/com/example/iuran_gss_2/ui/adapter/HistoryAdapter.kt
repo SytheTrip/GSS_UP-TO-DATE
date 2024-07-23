@@ -41,6 +41,7 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                 when (status) {
                     "Diterima" -> {
                         keteranganColor = itemView.context.getColor(R.color.acceptColor)
+                        btnRequest.visibility = View.GONE
 
                     }
 

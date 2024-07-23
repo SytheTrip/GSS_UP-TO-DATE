@@ -1,10 +1,14 @@
 package com.example.iuran_gss_2.ui.admin.verifikasi
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -17,6 +21,8 @@ import com.example.iuran_gss_2.model.local.UpdateTransaksiRequest
 import com.example.iuran_gss_2.utils.PDFTools
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Locale
+
 
 class VerifikasiFragment : Fragment() {
     private lateinit var binding: FragmentVerifikasiBinding
@@ -98,7 +104,17 @@ class VerifikasiFragment : Fragment() {
                                 .load(dataTransaksi.bukti)
                                 .into(ivImage)
                         } else {
-                            downloadPDF(dataTransaksi.bukti)
+                            binding.wvPdf.settings.javaScriptEnabled = true
+                            binding.wvPdf.webViewClient = object : WebViewClient() {
+                                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                                    view?.loadUrl(url.toString())
+                                    return true
+                                }
+                            }
+
+                            binding.wvPdf.loadUrl("https://www.google.co.in/")
+                            binding.wvPdf.visibility = View.VISIBLE
+//                            downloadPDF(dataTransaksi.bukti)
                         }
                     }
                 }
@@ -122,7 +138,7 @@ class VerifikasiFragment : Fragment() {
 
     private fun downloadPDF(url: String) {
         binding.tvDownload.setOnClickListener {
-            Log.d("Testing",url)
+            Log.d("Testing", url)
             PDFTools().downloadAndOpenPDF(requireContext(), url)
         }
     }

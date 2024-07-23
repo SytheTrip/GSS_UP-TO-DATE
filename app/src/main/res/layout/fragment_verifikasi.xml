@@ -8,6 +8,14 @@
     android:background="@color/white"
     tools:context=".ui.admin.verifikasi.VerifikasiFragment">
 
+    <WebView
+        android:id="@+id/wv_pdf"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="20dp"
+        android:visibility="gone"
+        />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -85,6 +93,8 @@
                 app:layout_constraintTop_toTopOf="parent"
 
                 />
+
+
 
             <TextView
                 android:id="@+id/tv_download"

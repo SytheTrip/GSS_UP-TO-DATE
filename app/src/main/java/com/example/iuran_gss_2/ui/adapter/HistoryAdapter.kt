@@ -41,13 +41,7 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                 when (status) {
                     "Diterima" -> {
                         keteranganColor = itemView.context.getColor(R.color.acceptColor)
-                        btnRequest.visibility = View.VISIBLE
-                        btnRequest.setOnClickListener {
-                            val position = adapterPosition
-                            if (position != RecyclerView.NO_POSITION) {
-                                onItemClickCallback?.onItemClicked(data)
-                            }
-                        }
+
                     }
 
                     "Ditolak" -> {
@@ -62,7 +56,13 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                     }
                     "Pending" -> {
                         keteranganColor = itemView.context.getColor(R.color.pendingColor)
-                        btnRequest.visibility = View.GONE
+                        btnRequest.visibility = View.VISIBLE
+                        btnRequest.setOnClickListener {
+                            val position = adapterPosition
+                            if (position != RecyclerView.NO_POSITION) {
+                                onItemClickCallback?.onItemClicked(data)
+                            }
+                        }
                     }
                     else -> {
                         keteranganColor = 0

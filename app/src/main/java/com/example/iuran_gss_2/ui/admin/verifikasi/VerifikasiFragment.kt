@@ -28,6 +28,7 @@ class VerifikasiFragment : Fragment() {
     private lateinit var email: String
     private lateinit var nominal: String
     private lateinit var keterangan: String
+    private lateinit var keteranganInput: String
     private lateinit var status: String
 
 
@@ -113,7 +114,9 @@ class VerifikasiFragment : Fragment() {
 
 
     private fun updateTransaksi() {
-        val request = UpdateTransaksiRequest(tNumber = tNumber, status = status)
+        keteranganInput = binding.inputKeterangan.editText?.text.toString()
+        val request =
+            UpdateTransaksiRequest(tNumber = tNumber, status = status, keterangan = keteranganInput)
         viewModel.updateTransaksi(request).observe(viewLifecycleOwner) { data ->
             when (data) {
                 is Event.Success -> {

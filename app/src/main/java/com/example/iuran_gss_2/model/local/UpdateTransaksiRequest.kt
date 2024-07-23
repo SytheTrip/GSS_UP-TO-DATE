@@ -10,4 +10,7 @@ data class UpdateTransaksiRequest(
 
     @field:SerializedName("status")
     val status: String,
+
+    @field:SerializedName("keterangan")
+    val keterangan: String,
 )

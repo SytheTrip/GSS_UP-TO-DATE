@@ -47,6 +47,8 @@ class QrisFragment : Fragment() {
     private lateinit var kode: String
     private lateinit var imageView: ImageView
     private lateinit var image: Bitmap
+    private lateinit var fileName: String
+    private lateinit var fileType: String
     private val photoParts = mutableListOf<MultipartBody.Part>()
     private val data = JSONObject()
 
@@ -109,8 +111,8 @@ class QrisFragment : Fragment() {
         data.put("harga", binding.tvNominalValue.text.toString())
         data.put("status", "Pending")
         data.put("keterangan", requireContext().getString(R.string.pendingText))
+        data.put("fileType", fileType)
         val requestBody = data.toString().toRequestBody("application/json".toMediaTypeOrNull())
-        Log.d("Testing", requestBody.toString())
         if (photoParts.isNotEmpty()) {
             viewModel.createTransaction(photoParts, requestBody)
                 .observe(viewLifecycleOwner) { data ->
@@ -215,7 +217,7 @@ class QrisFragment : Fragment() {
         }
     }
 
-    private fun handleFile(){
+    private fun handleFile() {
         binding.fragmentImage.visibility = View.VISIBLE
         binding.qrisLayout.alpha = 0.6F
     }
@@ -224,11 +226,12 @@ class QrisFragment : Fragment() {
         try {
             val context = requireContext()
             val pdfFile = createFileFromUri(context, file)
-            Log.d("Testing", pdfFile.toString())
-            val requestFile: RequestBody = pdfFile.asRequestBody("application/pdf".toMediaTypeOrNull())
-            val photoPart: MultipartBody.Part = MultipartBody.Part.createFormData("photos", pdfFile.name, requestFile)
-            // Add photoPart to your request body or list
-             photoParts.add(photoPart)
+            binding.tvNamaFile.text = fileName
+            val requestFile: RequestBody =
+                pdfFile.asRequestBody("application/pdf".toMediaTypeOrNull())
+            val photoPart: MultipartBody.Part =
+                MultipartBody.Part.createFormData("photos", pdfFile.name, requestFile)
+            photoParts.add(photoPart)
         } catch (e: Exception) {
             Log.e("Error", "File selection failed", e)
         }
@@ -245,7 +248,7 @@ class QrisFragment : Fragment() {
 
     private fun createFileFromUri(context: Context, uri: Uri): File {
         val contentResolver: ContentResolver = context.contentResolver
-        val fileName = getFileName(contentResolver, uri)
+        fileName = getFileName(contentResolver, uri)
         val file = File(context.cacheDir, fileName)
         val inputStream: InputStream? = contentResolver.openInputStream(uri)
         val outputStream = FileOutputStream(file)
@@ -256,6 +259,7 @@ class QrisFragment : Fragment() {
         }
         return file
     }
+
     private fun getFileName(contentResolver: ContentResolver, uri: Uri): String {
         var name = "temp_file"
         val returnCursor = contentResolver.query(uri, null, null, null, null)
@@ -268,18 +272,7 @@ class QrisFragment : Fragment() {
         }
         return name
     }
-    private fun getRealPathFromUri(activity: Activity, uri: Uri): String {
-        var path: String? = null
-        val projection = arrayOf(MediaStore.MediaColumns.DATA)
-        val cursor = activity.contentResolver.query(uri, projection, null, null, null)
-        if (cursor != null) {
-            val column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA)
-            cursor.moveToFirst()
-            path = cursor.getString(column_index)
-            cursor.close()
-        }
-        return path ?: uri.path.toString()
-    }
+
 
     private fun handleImage() {
         binding.fragmentImage.visibility = View.VISIBLE

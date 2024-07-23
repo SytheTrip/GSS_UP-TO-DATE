@@ -34,8 +34,6 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                     jumlah += dataTransaction.harga
                     status = dataTransaction.status
                 }
-
-
                 tvNama.text = nama
                 tvNoPembayaran.text = noPembayaran
                 tvJumlah.text = jumlah
@@ -73,6 +71,7 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                     }
                 }
                 tvKeterangan.setTextColor(keteranganColor)
+                tvKeterangan.text = data.dataTransaction.keterangan;
             }
 
         }

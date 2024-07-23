@@ -93,6 +93,7 @@ class VerifikasiFragment : Fragment() {
                         tvKeterangan.text = ("$keterangan ${dataTransaksi.keterangan}")
                         fileType = dataTransaksi.fileType
                         if (fileType == "image") {
+                            binding.tvDownload.visibility = View.GONE
                             Glide.with(requireActivity())
                                 .load(dataTransaksi.bukti)
                                 .into(ivImage)

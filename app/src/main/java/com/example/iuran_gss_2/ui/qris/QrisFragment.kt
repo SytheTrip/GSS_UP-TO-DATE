@@ -64,7 +64,6 @@ class QrisFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         kode = arguments?.getString("title").toString()
         setupPrice()
-
         navigate()
         setData()
     }
@@ -171,6 +170,7 @@ class QrisFragment : Fragment() {
 
     private fun openPdf() {
         binding.tvTitle.text = "Upload PDF"
+        fileType = "pdf"
         val intent = Intent()
         intent.setType("application/pdf")
         intent.setAction(Intent.ACTION_GET_CONTENT)
@@ -180,6 +180,7 @@ class QrisFragment : Fragment() {
 
     private fun openGallery() {
         binding.tvTitle.text = "Upload Image"
+        fileType = "image"
         binding.ivImage.background = null
         val intent = Intent(MediaStore.ACTION_PICK_IMAGES).apply {
             type = "image/*"

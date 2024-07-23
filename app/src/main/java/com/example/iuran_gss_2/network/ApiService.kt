@@ -92,4 +92,5 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body body: UpdateTransaksiRequest
     ): Response<GeneralResponse>
+
 }

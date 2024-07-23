@@ -15,4 +15,6 @@ class VerifikasiViewModel(private val repository: IuranRepository) : ViewModel()
         repository.updateTransaksi(request)
 
     fun getTransaksi(request : TransaksiRequest): LiveData<Event<GetTransaksiResponse>> = repository.getTransaksi(request)
+
+
 }

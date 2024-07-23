@@ -2,6 +2,7 @@ package com.example.iuran_gss_2.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Environment
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
@@ -23,9 +24,17 @@ import com.example.iuran_gss_2.model.remote.ProfileResponse
 import com.example.iuran_gss_2.model.remote.SimpleResponse
 import com.example.iuran_gss_2.network.ApiService
 import kotlinx.coroutines.Dispatchers
+import okhttp3.Call
+import okhttp3.Callback
 import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.Response
 import org.json.JSONObject
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 class IuranRepository(
     private val sharedPreferences: SharedPreferences,
@@ -168,6 +177,53 @@ class IuranRepository(
                 emit(Event.Error(null, context.getString(R.string.get_transaction_failed)))
             }
         }
+
+    fun downloadPdf(
+        context: Context,
+        url: String,
+        fileName: String,
+        callback: (Boolean, String) -> Unit
+    ) {
+        val client = OkHttpClient()
+
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("Download PDF", "Download failed: ${e.message}")
+                callback(false, "Download failed: ${e.message}")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (!response.isSuccessful) {
+                    Log.e("Download PDF", "Download failed: ${response.message}")
+                    callback(false, "Download failed: ${response.message}")
+                    return
+                }
+
+                val file =
+                    File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName)
+                response.body?.let { body ->
+                    try {
+                        val inputStream = body.byteStream()
+                        val outputStream = FileOutputStream(file)
+                        inputStream.use { input ->
+                            outputStream.use { output ->
+                                input.copyTo(output)
+                            }
+                        }
+                        Log.d("Download PDF", "Downloaded to ${file.absolutePath}")
+                        callback(true, file.absolutePath)
+                    } catch (e: IOException) {
+                        Log.e("Download PDF", "Error saving file: ${e.message}")
+                        callback(false, "Error saving file: ${e.message}")
+                    }
+                }
+            }
+        })
+    }
 
     fun getTransaksi(request: TransaksiRequest): LiveData<Event<GetTransaksiResponse>> =
         liveData(Dispatchers.IO) {

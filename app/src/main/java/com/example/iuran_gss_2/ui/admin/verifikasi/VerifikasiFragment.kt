@@ -14,6 +14,7 @@ import com.example.iuran_gss_2.databinding.FragmentVerifikasiBinding
 import com.example.iuran_gss_2.model.local.Event
 import com.example.iuran_gss_2.model.local.TransaksiRequest
 import com.example.iuran_gss_2.model.local.UpdateTransaksiRequest
+import com.example.iuran_gss_2.utils.PDFTools
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,6 +30,7 @@ class VerifikasiFragment : Fragment() {
     private lateinit var nominal: String
     private lateinit var keterangan: String
     private lateinit var keteranganInput: String
+    private lateinit var fileType: String
     private lateinit var status: String
 
 
@@ -89,9 +91,14 @@ class VerifikasiFragment : Fragment() {
                         tvEmail.text = ("$email ${dataTransaksi.email}")
                         tvNominal.text = ("$nominal ${dataTransaksi.harga}")
                         tvKeterangan.text = ("$keterangan ${dataTransaksi.keterangan}")
-                        Glide.with(requireActivity())
-                            .load(dataTransaksi.bukti)
-                            .into(ivImage)
+                        fileType = dataTransaksi.fileType
+                        if (fileType == "image") {
+                            Glide.with(requireActivity())
+                                .load(dataTransaksi.bukti)
+                                .into(ivImage)
+                        } else {
+                            downloadPDF(dataTransaksi.bukti)
+                        }
                     }
                 }
 
@@ -112,6 +119,11 @@ class VerifikasiFragment : Fragment() {
         }
     }
 
+    private fun downloadPDF(url: String) {
+        binding.tvDownload.setOnClickListener {
+            PDFTools().showPDFUrl(requireContext(), url)
+        }
+    }
 
     private fun updateTransaksi() {
         keteranganInput = binding.inputKeterangan.editText?.text.toString()

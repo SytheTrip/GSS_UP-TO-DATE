@@ -50,5 +50,8 @@ data class DataTransaksi(
     val status: String,
 
     @field:SerializedName("username")
-    val username: String
+    val username: String,
+
+    @field:SerializedName("fileType")
+    val fileType: String
 )

@@ -73,6 +73,7 @@
     <string name="rejectText">Transaksi anda ditolak</string>
     <string name="acceptText">Transaksi anda diterima</string>
     <string name="something_error">Terjadi kesalahan pada server</string>
+    <string name="download_pdf">Download PDF</string>
 
 
 </resources>

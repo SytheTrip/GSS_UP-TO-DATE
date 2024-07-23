@@ -20,7 +20,6 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
         private lateinit var noPembayaran: String
         private lateinit var jumlah: String
         private lateinit var status: String
-        private lateinit var keterangan: String
         private var keteranganColor: Int = 0
         fun bind(data: ListHistoryItem) {
             binding.apply {
@@ -43,7 +42,6 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                 tvStatus.text = status
                 when (status) {
                     "Diterima" -> {
-                        keterangan = itemView.context.getString(R.string.pendingText)
                         keteranganColor = itemView.context.getColor(R.color.acceptColor)
                         btnRequest.visibility = View.VISIBLE
                         btnRequest.setOnClickListener {
@@ -55,7 +53,6 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                     }
 
                     "Ditolak" -> {
-                        keterangan = itemView.context.getString(R.string.rejectText)
                         keteranganColor = itemView.context.getColor(R.color.rejectColor)
                         btnRequest.visibility = View.VISIBLE
                         btnRequest.setOnClickListener {
@@ -67,17 +64,14 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                     }
                     "Pending" -> {
                         keteranganColor = itemView.context.getColor(R.color.pendingColor)
-                        keterangan = itemView.context.getString(R.string.pendingText)
                         btnRequest.visibility = View.GONE
                     }
                     else -> {
-                        keterangan = ""
                         keteranganColor = 0
                         tvKeterangan.visibility = View.GONE
                         btnRequest.visibility = View.GONE
                     }
                 }
-                tvKeterangan.text = keterangan
                 tvKeterangan.setTextColor(keteranganColor)
             }
 

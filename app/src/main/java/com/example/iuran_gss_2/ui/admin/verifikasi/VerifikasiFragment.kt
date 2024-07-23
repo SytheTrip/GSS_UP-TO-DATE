@@ -121,7 +121,8 @@ class VerifikasiFragment : Fragment() {
 
     private fun downloadPDF(url: String) {
         binding.tvDownload.setOnClickListener {
-            PDFTools().showPDFUrl(requireContext(), url)
+            Log.d("Testing",url)
+            PDFTools().downloadAndOpenPDF(requireContext(), url)
         }
     }
 

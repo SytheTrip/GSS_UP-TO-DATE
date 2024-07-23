@@ -118,7 +118,6 @@ class PDFTools {
 
     private class GetFileInfo : AsyncTask<String, Void, String>() {
         override fun doInBackground(vararg urls: String): String {
-            // Implement the logic to get file information, e.g., file name from the URL
             return urls[0].substring(urls[0].lastIndexOf("/") + 1)
         }
     }

@@ -8,6 +8,7 @@
     android:background="@color/white"
     tools:context=".ui.admin.verifikasi.VerifikasiFragment">
 
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"

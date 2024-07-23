@@ -48,10 +48,8 @@ class HistoryFragment : Fragment() {
         viewModel.getAllTransaction().observe(viewLifecycleOwner) { event ->
             when (event) {
                 is Event.Success -> {
-                    Log.d("Testing", "hasil event ${event.data}")
                     binding.progressBar.visibility = View.GONE
                     val transactionMap = event.data.data
-                    Log.d("Testinng", "Hasil data $transactionMap")
                     setupAdapter(transactionMap.listHistory)
 
                 }

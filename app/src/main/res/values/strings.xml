@@ -29,16 +29,16 @@
     <string name="aktivitas">AKTIVITAS</string>
     <string name="verifikasi_pembayaran">VERIFIKASI\nPEMBAYARAN</string>
     <string name="history">Riwayat\nTransaksi</string>
-    <string name="nama_input">Nama :</string>
-    <string name="jumlah_input">Jumlah :</string>
-    <string name="status">Status</string>
+    <string name="nama_input">Nama : </string>
+    <string name="jumlah_input">Jumlah : </string>
+    <string name="status">Status : </string>
     <string name="complain">Komplain</string>
-    <string name="pembayaran_input">No. Pembayaran :</string>
-    <string name="keterangan_input">Keterangan :</string>
-    <string name="nominal_input">Nominal :</string>
-    <string name="email_input">Email :</string>
-    <string name="telepon_input">No.Telp :</string>
-    <string name="blok_input">No.Rumah/Blok :</string>
+    <string name="pembayaran_input">No. Pembayaran : </string>
+    <string name="keterangan_input">Keterangan : </string>
+    <string name="nominal_input">Nominal : </string>
+    <string name="email_input">Email : </string>
+    <string name="telepon_input">No.Telp : </string>
+    <string name="blok_input">No.Rumah/Blok : </string>
     <string name="accept">Terima</string>
     <string name="tolak">Tolak</string>
     <string name="notifikasi">Memberi\nInformasi</string>
@@ -70,8 +70,8 @@
 
     <!--  List Transaction User  -->
     <string name="pendingText">Sedang Diproses 1x24 jam</string>
-    <string name="rejectText">Ditolak</string>
-    <string name="acceptText">Diterima</string>
+    <string name="rejectText">Transaksi anda ditolak</string>
+    <string name="acceptText">Transaksi anda diterima</string>
 
 
 </resources>

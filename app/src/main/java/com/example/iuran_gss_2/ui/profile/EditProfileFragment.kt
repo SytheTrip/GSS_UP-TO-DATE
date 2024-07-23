@@ -18,6 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class EditProfileFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileBinding
     private val viewModel: EditViewModel by viewModel()
+    private lateinit var email : String
     private lateinit var name: String
     private lateinit var noRumah: String
     private lateinit var bloc: String
@@ -47,6 +48,7 @@ class EditProfileFragment : Fragment() {
                         noRumahInput.setText(dataProfile.noRumah)
                         blocInput.setText(dataProfile.blok)
                         handphoneInput.setText(dataProfile.noPhone)
+                        emailLayout.text = dataProfile.email
                         progressBar.visibility = View.GONE
                     }
                 }
@@ -72,12 +74,7 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun editProfile() {
-        binding.apply {
-            name = nameInput.text.toString()
-            noRumah = noRumahInput.text.toString()
-            bloc = blocInput.text.toString()
-            noPhone = handphoneInput.text.toString()
-        }
+
         if (name.isNotEmpty() && noRumah.isNotEmpty() && bloc.isNotEmpty() && noPhone.isNotEmpty()) {
             val request = EditProfileRequest(
                 namaLengkap = name,

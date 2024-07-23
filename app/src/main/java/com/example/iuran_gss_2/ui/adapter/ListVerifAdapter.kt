@@ -1,18 +1,18 @@
 package com.example.iuran_gss_2.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iuran_gss_2.R
 import com.example.iuran_gss_2.databinding.PembayaranItemBinding
 import com.example.iuran_gss_2.model.remote.DataTransactionAdmin
-import com.example.iuran_gss_2.model.remote.ListHistoryItem
 
 class ListVerifAdapter(private var transaction: List<DataTransactionAdmin>) :
     RecyclerView.Adapter<ListVerifAdapter.MyViewHolder>() {
     class MyViewHolder(private val binding: PembayaranItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var onItemClickCallback: OnItemClickCallback? = null
         private lateinit var nama: String
         private lateinit var noPembayaran: String
         private lateinit var nominal: String
@@ -24,22 +24,20 @@ class ListVerifAdapter(private var transaction: List<DataTransactionAdmin>) :
                 noPembayaran = ("${tvNoPembayaran.text} ${data.list.tNumber}")
                 nominal = ("${tvNominal.text} ${data.list.harga}")
                 status = (data.list.status)
-
                 tvNama.text = nama
                 tvNoPembayaran.text = noPembayaran
                 tvNominal.text = nominal
                 tvStatus.text = status
-                statusColor = when (status) {
+                when (status) {
                     "Pending" -> {
-                        itemView.context.getColor(R.color.pendingColor)
+                        statusColor = itemView.context.getColor(R.color.pendingColor)
+                        tvStatus.visibility = View.VISIBLE
                     }
-
                     "Ditolak" -> {
-                        itemView.context.getColor(R.color.rejectColor)
+                        statusColor = itemView.context.getColor(R.color.rejectColor)
                     }
-
                     else -> {
-                        itemView.context.getColor(R.color.acceptColor)
+                        statusColor = itemView.context.getColor(R.color.acceptColor)
                     }
                 }
                 tvStatus.setTextColor(statusColor)
@@ -59,7 +57,7 @@ class ListVerifAdapter(private var transaction: List<DataTransactionAdmin>) :
         val data = transaction[position]
         holder.bind(data)
 
-        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(transaction[holder.adapterPosition] ) }
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(transaction[holder.adapterPosition]) }
     }
 
     private lateinit var onItemClickCallback: OnItemClickCallback

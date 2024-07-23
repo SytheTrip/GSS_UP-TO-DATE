@@ -94,7 +94,9 @@ class IuranRepository(
             emit(Event.Loading)
             try {
                 val response = apiService.createTransaksi(token, photos, request)
+                Log.d("Testing"," Hasil Response $response")
                 if (response.isSuccessful) {
+
                     val data = response.body()
                     data?.let {
                         emit(Event.Success(it))

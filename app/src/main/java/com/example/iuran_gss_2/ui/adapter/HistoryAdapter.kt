@@ -29,17 +29,17 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                 status = tvStatus.text.toString()
 
                 data.apply {
-                    nama = dataTransaction.namaLengkap
-                    noPembayaran = dataTransaction.tNumber
-                    jumlah = dataTransaction.harga
-                    status = dataTransaction.status
-                    keterangan = dataTransaction.keterangan
+                    nama += dataTransaction.namaLengkap
+                    noPembayaran += dataTransaction.tNumber
+                    jumlah += dataTransaction.harga
+                    status += dataTransaction.status
                 }
 
-                tvNama.text = data.dataTransaction.namaLengkap
+
+                tvNama.text = nama
                 tvNoPembayaran.text = noPembayaran
-                tvJumlah.text = data.dataTransaction.harga
-                tvStatus.text = data.dataTransaction.status
+                tvJumlah.text = jumlah
+                tvStatus.text = status
                 when (status) {
                     "Pending" -> {
                         keterangan = itemView.context.getString(R.string.pendingText)
@@ -55,6 +55,7 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
 
                     "Ditolak" -> {
                         keterangan = itemView.context.getString(R.string.rejectText)
+                        keteranganColor = itemView.context.getColor(R.color.rejectColor)
                         btnRequest.visibility = View.VISIBLE
                         btnRequest.setOnClickListener {
                             val position = adapterPosition
@@ -65,6 +66,7 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                     }
 
                     else -> {
+                        keteranganColor = itemView.context.getColor(R.color.acceptColor)
                         keterangan = itemView.context.getString(R.string.acceptText)
                         btnRequest.visibility = View.GONE
                     }

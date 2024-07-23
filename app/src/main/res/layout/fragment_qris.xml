@@ -222,14 +222,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="160dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="128dp"
-        app:cardCornerRadius="12dp"
-        android:visibility="gone"
+        android:layout_marginBottom="160dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -250,10 +249,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
-                android:text="UPLOAD FOTO"
+                android:background="@color/float_transparent"
+                android:elevation="4dp"
+                android:text="UPLOAD "
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -266,12 +268,32 @@
                 android:id="@+id/iv_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:background="#202124"
+                android:src="@drawable/outline_insert_drive_file_24"
                 android:contentDescription="@string/description_bukti"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+                />
+
+            <TextView
+                android:id="@+id/tv_nama_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama file"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                android:fontFamily="@font/inter_bold"
+                app:layout_constraintStart_toStartOf="@id/iv_image"
+                app:layout_constraintEnd_toEndOf="@id/iv_image"
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:layout_marginBottom="28dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/iv_image"
+
+                />
 
             <ImageView
                 android:id="@+id/btn_send"

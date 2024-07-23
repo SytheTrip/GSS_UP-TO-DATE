@@ -13,7 +13,6 @@ import com.example.iuran_gss_2.model.local.Event
 import com.example.iuran_gss_2.model.local.LoginRequest
 import com.example.iuran_gss_2.model.local.TransaksiRequest
 import com.example.iuran_gss_2.model.local.UpdateTransaksiRequest
-import com.example.iuran_gss_2.model.remote.DataTransaksi
 import com.example.iuran_gss_2.model.remote.GeneralResponse
 import com.example.iuran_gss_2.model.remote.GetAllTransaksiAdminResponse
 import com.example.iuran_gss_2.model.remote.GetAllTransaksiUserResponse
@@ -58,17 +57,46 @@ class IuranRepository(
             }
         }
 
+    fun getUsernameAdmin(): LiveData<Event<GetUsernameResponse>> = liveData(Dispatchers.IO) {
+        emit(Event.Loading)
+        try {
+            val account = getData()
+            val response = apiService.getUsernameAdmin(account.token.toString())
+            if (response.isSuccessful) {
+
+                val data = response.body()
+                data?.let {
+                    emit(Event.Success(it))
+                }
+            } else {
+                val error = response.errorBody()?.toString()
+                if (error != null) {
+                    val jsonObject = JSONObject(error)
+                    val message = jsonObject.getString("message")
+                    emit(Event.Error(null, message))
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.d("Indekosku Repository", "Errornya di API")
+            emit(Event.Error(null, context.getString(R.string.email_already_taken)))
+        }
+    }
+
     fun getLogin(request: LoginRequest): LiveData<Event<LoginResponse>> =
         liveData(Dispatchers.IO) {
             emit(Event.Loading)
             try {
-                Log.d("Testing", "Request $request")
                 val response = apiService.login(request)
                 if (response.isSuccessful) {
-                    Log.d("Testing", "Request $response")
+
                     val data = response.body()
                     data?.let {
-                        emit(Event.Success(it))
+                        if (data.status != "400") {
+                            emit(Event.Success(it))
+                        } else {
+                            emit(Event.Error(null, data.msg))
+                        }
                     }
                 } else {
                     val error = response.errorBody()?.toString()
@@ -94,7 +122,7 @@ class IuranRepository(
             emit(Event.Loading)
             try {
                 val response = apiService.createTransaksi(token, photos, request)
-                Log.d("Testing"," Hasil Response $response")
+                Log.d("Testing", " Hasil Response $response")
                 if (response.isSuccessful) {
 
                     val data = response.body()
@@ -116,12 +144,12 @@ class IuranRepository(
             }
         }
 
-    fun updateTransaksi(request : UpdateTransaksiRequest) : LiveData<Event<GeneralResponse>> =
+    fun updateTransaksi(request: UpdateTransaksiRequest): LiveData<Event<GeneralResponse>> =
         liveData(Dispatchers.IO) {
             emit(Event.Loading)
             try {
                 val account = getData()
-                val response = apiService.updateTransaksi(account.token.toString(),request)
+                val response = apiService.updateTransaksi(account.token.toString(), request)
                 if (response.isSuccessful) {
                     val data = response.body()
                     data?.let {
@@ -142,12 +170,12 @@ class IuranRepository(
             }
         }
 
-    fun getTransaksi(request : TransaksiRequest) : LiveData<Event<GetTransaksiResponse>> =
+    fun getTransaksi(request: TransaksiRequest): LiveData<Event<GetTransaksiResponse>> =
         liveData(Dispatchers.IO) {
             emit(Event.Loading)
             try {
                 val account = getData()
-                val response = apiService.getTransaksi(account.token.toString(),request)
+                val response = apiService.getTransaksi(account.token.toString(), request)
                 Log.d("Testing", response.toString())
                 if (response.isSuccessful) {
                     val data = response.body()
@@ -168,7 +196,6 @@ class IuranRepository(
                 emit(Event.Error(null, context.getString(R.string.get_transaction_failed)))
             }
         }
-
 
 
     fun getAllTransaksiAdmin(token: String): LiveData<Event<GetAllTransaksiAdminResponse>> =
@@ -253,6 +280,31 @@ class IuranRepository(
             emit(Event.Loading)
             try {
                 val response = apiService.getProfile(token)
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    data?.let {
+                        emit(Event.Success(it))
+                    }
+                } else {
+                    val error = response.errorBody()?.toString()
+                    if (error != null) {
+                        val jsonObject = JSONObject(error)
+                        val message = jsonObject.getString("message")
+                        emit(Event.Error(null, message))
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.d("Indekosku Repository", "Errornya di API")
+                emit(Event.Error(null, context.getString(R.string.get_profile_failed)))
+            }
+        }
+
+    fun getProfileAdmin(token: String): LiveData<Event<ProfileResponse>> =
+        liveData(Dispatchers.IO) {
+            emit(Event.Loading)
+            try {
+                val response = apiService.getProfileAdmin(token)
                 if (response.isSuccessful) {
                     val data = response.body()
                     data?.let {

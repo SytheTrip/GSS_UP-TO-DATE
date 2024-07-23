@@ -168,11 +168,23 @@
                     app:layout_constraintTop_toTopOf="@id/tv_payment_number" />
 
                 <TextView
+                    android:id="@+id/tv_idr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="IDR"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_qris"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/tv_nominal_value"
+                    app:layout_constraintTop_toTopOf="@id/nominal" />
+
+                <TextView
                     android:id="@+id/tv_nominal_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/dummy_nominal"
+                    android:text="175000"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_qris"
                     android:textStyle="bold"

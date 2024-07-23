@@ -33,11 +33,14 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navigate()
         account = viewModel.getData()
+        if (account.role == "Admin") {
+            binding.btnEdit.visibility = View.GONE
+        }
         observeData()
     }
 
     private fun observeData() {
-        viewModel.getProfile(account.token.toString()).observe(viewLifecycleOwner) { data ->
+        viewModel.getProfile(account.token.toString(), account.role.toString()).observe(viewLifecycleOwner) { data ->
             when (data) {
                 is Event.Success -> {
                     val dataProfile = data.data.data

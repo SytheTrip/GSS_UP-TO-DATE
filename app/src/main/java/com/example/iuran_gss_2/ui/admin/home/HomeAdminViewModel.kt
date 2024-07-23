@@ -8,7 +8,7 @@ import com.example.iuran_gss_2.model.remote.GetUsernameResponse
 import com.example.iuran_gss_2.repository.IuranRepository
 
 class HomeAdminViewModel(val repository: IuranRepository) : ViewModel() {
-    private lateinit var account: DataHolder
 
+    fun getUsername(): LiveData<Event<GetUsernameResponse>> = repository.getUsernameAdmin()
 
 }

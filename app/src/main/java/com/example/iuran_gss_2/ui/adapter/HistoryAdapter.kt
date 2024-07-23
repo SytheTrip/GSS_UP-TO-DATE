@@ -1,5 +1,6 @@
 package com.example.iuran_gss_2.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                     nama += dataTransaction.namaLengkap
                     noPembayaran += dataTransaction.tNumber
                     jumlah += dataTransaction.harga
-                    status += dataTransaction.status
+                    status = dataTransaction.status
                 }
 
 
@@ -41,9 +42,9 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                 tvJumlah.text = jumlah
                 tvStatus.text = status
                 when (status) {
-                    "Pending" -> {
+                    "Diterima" -> {
                         keterangan = itemView.context.getString(R.string.pendingText)
-                        keteranganColor = itemView.context.getColor(R.color.pendingColor)
+                        keteranganColor = itemView.context.getColor(R.color.acceptColor)
                         btnRequest.visibility = View.VISIBLE
                         btnRequest.setOnClickListener {
                             val position = adapterPosition
@@ -64,10 +65,15 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                             }
                         }
                     }
-
+                    "Pending" -> {
+                        keteranganColor = itemView.context.getColor(R.color.pendingColor)
+                        keterangan = itemView.context.getString(R.string.pendingText)
+                        btnRequest.visibility = View.GONE
+                    }
                     else -> {
-                        keteranganColor = itemView.context.getColor(R.color.acceptColor)
-                        keterangan = itemView.context.getString(R.string.acceptText)
+                        keterangan = ""
+                        keteranganColor = 0
+                        tvKeterangan.visibility = View.GONE
                         btnRequest.visibility = View.GONE
                     }
                 }

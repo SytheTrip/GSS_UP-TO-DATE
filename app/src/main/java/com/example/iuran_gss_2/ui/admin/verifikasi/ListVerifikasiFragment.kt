@@ -1,7 +1,5 @@
 package com.example.iuran_gss_2.ui.admin.verifikasi
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.iuran_gss_2.R
 import com.example.iuran_gss_2.databinding.FragmentListVerifikasiBinding
 import com.example.iuran_gss_2.model.local.Event
 import com.example.iuran_gss_2.model.remote.DataTransactionAdmin
@@ -49,7 +46,7 @@ class ListVerifikasiFragment : Fragment() {
                 is Event.Error -> {
                     Snackbar.make(
                         requireView(),
-                        requireContext().getString(R.string.invalid_login),
+                        "Tidak ada data",
                         Toast.LENGTH_SHORT
                     ).show()
                     binding.progressBar.visibility = View.GONE
@@ -79,7 +76,10 @@ class ListVerifikasiFragment : Fragment() {
         adapter.setOnItemClickCallback(object :
             ListVerifAdapter.OnItemClickCallback {
             override fun onItemClicked(data: DataTransactionAdmin) {
-                val toVerification = ListVerifikasiFragmentDirections.actionListVerifikasiFragmentToVerifikasiFragment(data.list.tNumber)
+                val toVerification =
+                    ListVerifikasiFragmentDirections.actionListVerifikasiFragmentToVerifikasiFragment(
+                        data.list.tNumber
+                    )
                 findNavController().navigate(toVerification)
             }
         })

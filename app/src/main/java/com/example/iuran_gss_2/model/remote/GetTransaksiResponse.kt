@@ -4,39 +4,51 @@ import com.google.gson.annotations.SerializedName
 
 data class GetTransaksiResponse(
 
-	@field:SerializedName("code")
-	val code: Int,
+    @field:SerializedName("code")
+    val code: Int,
 
-	@field:SerializedName("data")
-	val data: DataTransaksi,
+    @field:SerializedName("data")
+    val data: DataTransaksi,
 
-	@field:SerializedName("message")
-	val message: String
+    @field:SerializedName("message")
+    val message: String
 )
 
 data class DataTransaksi(
 
-	@field:SerializedName("createdAt")
-	val createdAt: Long,
+    @field:SerializedName("createdAt")
+    val createdAt: Long,
 
-	@field:SerializedName("keterangan")
-	val keterangan: String,
+    @field:SerializedName("keterangan")
+    val keterangan: String,
 
-	@field:SerializedName("harga")
-	val harga: String,
+    @field:SerializedName("harga")
+    val harga: String,
 
-	@field:SerializedName("bukti")
-	val bukti: String,
+    @field:SerializedName("bukti")
+    val bukti: String,
 
-	@field:SerializedName("tNumber")
-	val tNumber: String,
 
-	@field:SerializedName("email")
-	val email: String,
+    @field:SerializedName("blok")
+    val blok: String,
 
-	@field:SerializedName("status")
-	val status: String,
 
-	@field:SerializedName("username")
-	val username: String
+    @field:SerializedName("noRumah")
+    val noRumah: String,
+
+    @field:SerializedName("noPhone")
+    val noPhone: String,
+
+
+    @field:SerializedName("tNumber")
+    val tNumber: String,
+
+    @field:SerializedName("email")
+    val email: String,
+
+    @field:SerializedName("status")
+    val status: String,
+
+    @field:SerializedName("username")
+    val username: String
 )

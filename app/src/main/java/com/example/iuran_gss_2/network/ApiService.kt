@@ -46,6 +46,11 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): Response<ProfileResponse>
 
+    @GET("admin/getProfile")
+    suspend fun getProfileAdmin(
+        @Header("Authorization") token: String,
+    ): Response<ProfileResponse>
+
     @PUT("user/updateProfile")
     suspend fun updateProfile(
         @Header("Authorization") token: String,
@@ -61,6 +66,11 @@ interface ApiService {
         @Part("data") data: RequestBody
     ): Response<SimpleResponse>
 
+    @GET("admin/getUsername")
+    suspend fun getUsernameAdmin(
+        @Header("Authorization") token: String
+    ): Response<GetUsernameResponse>
+
     @GET("admin/getAllTransaksi")
     suspend fun getAllTransaksiAdmin(
         @Header("Authorization") token: String,
@@ -71,14 +81,15 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): Response<GetAllTransaksiUserResponse>
 
-    @GET("admin/getTransaksi")
+    @POST("admin/getTransaksi")
     suspend fun getTransaksi(
-        @Header("Authorization") token : String,
-        @Body body : TransaksiRequest
-    ) : Response<GetTransaksiResponse>
-    @PUT("/admin/updateTransaksi")
+        @Header("Authorization") token: String,
+        @Body body: TransaksiRequest
+    ): Response<GetTransaksiResponse>
+
+    @PUT("admin/updateTransaksi")
     suspend fun updateTransaksi(
-        @Header("Authorization") token : String,
-        @Body body : UpdateTransaksiRequest
-    ) : Response<GeneralResponse>
+        @Header("Authorization") token: String,
+        @Body body: UpdateTransaksiRequest
+    ): Response<GeneralResponse>
 }

@@ -18,7 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class EditProfileFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileBinding
     private val viewModel: EditViewModel by viewModel()
-    private lateinit var email : String
+    private lateinit var email: String
     private lateinit var name: String
     private lateinit var noRumah: String
     private lateinit var bloc: String
@@ -44,12 +44,19 @@ class EditProfileFragment : Fragment() {
                 is Event.Success -> {
                     val dataProfile = data.data.data
                     binding.apply {
-                        nameInput.setText(dataProfile.namaLengkap)
-                        noRumahInput.setText(dataProfile.noRumah)
-                        blocInput.setText(dataProfile.blok)
-                        handphoneInput.setText(dataProfile.noPhone)
+                        name = dataProfile.namaLengkap
+                        noRumah = dataProfile.noRumah
+                        noPhone = dataProfile.noPhone
+                        bloc = dataProfile.blok
+
+                        nameInput.setText(name)
+                        noRumahInput.setText(noRumah)
+                        blocInput.setText(bloc)
+                        handphoneInput.setText(noPhone)
                         emailLayout.text = dataProfile.email
                         progressBar.visibility = View.GONE
+
+
                     }
                 }
 
@@ -69,12 +76,19 @@ class EditProfileFragment : Fragment() {
             }
 
         }
+    }
 
-
+    private fun getDataFromEdit() {
+        binding.apply {
+            name = nameInput.text.toString()
+            noRumah = noRumahInput.text.toString()
+            noPhone = handphoneInput.text.toString()
+            bloc = blocInput.text.toString()
+        }
     }
 
     private fun editProfile() {
-
+        getDataFromEdit()
         if (name.isNotEmpty() && noRumah.isNotEmpty() && bloc.isNotEmpty() && noPhone.isNotEmpty()) {
             val request = EditProfileRequest(
                 namaLengkap = name,
@@ -99,7 +113,7 @@ class EditProfileFragment : Fragment() {
                     is Event.Error -> {
                         Snackbar.make(
                             requireView(),
-                            requireContext().getString(R.string.invalid_login),
+                            requireContext().getString(R.string.something_error),
                             Toast.LENGTH_SHORT
                         ).show()
                         binding.progressBar.visibility = View.GONE

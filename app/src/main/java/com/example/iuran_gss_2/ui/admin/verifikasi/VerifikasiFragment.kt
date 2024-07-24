@@ -188,7 +188,7 @@ class VerifikasiFragment : Fragment() {
         override fun onPreExecute() {
             super.onPreExecute()
             progressDialog = ProgressDialog(requireContext())
-            progressDialog.setMessage("Downloading PDF...")
+            progressDialog.setMessage("Loading PDF...")
             progressDialog.isIndeterminate = true
             progressDialog.setCancelable(false)
             progressDialog.show()
@@ -222,7 +222,7 @@ class VerifikasiFragment : Fragment() {
         private fun showErrorDialog() {
             val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
             builder.setTitle("Error")
-            builder.setMessage("Failed to download PDF. Please try again.")
+            builder.setMessage("Failed to Load PDF. Please try again.")
             builder.setPositiveButton("OK", null)
             builder.show()
         }

@@ -76,9 +76,9 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/primary"
             android:text="@string/complain"
-            app:layout_constraintBottom_toBottomOf="@id/tv_keterangan"
+            app:layout_constraintBottom_toBottomOf="@id/tv_status"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_keterangan" />
+            app:layout_constraintTop_toTopOf="@id/tv_status" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

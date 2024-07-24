@@ -19,6 +19,7 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
         private lateinit var noPembayaran: String
         private lateinit var jumlah: String
         private lateinit var status: String
+        private var statusColor : Int = 0
         private var keteranganColor: Int = 0
         fun bind(data: ListHistoryItem) {
             binding.apply {
@@ -40,12 +41,17 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                 when (status) {
                     "Diterima" -> {
                         keteranganColor = itemView.context.getColor(R.color.acceptColor)
+                        tvStatus.text = "Diterima"
+                        tvStatus.setTextColor(keteranganColor)
                         btnRequest.visibility = View.GONE
-
+                        tvKeterangan.visibility = View.GONE
                     }
 
                     "Ditolak" -> {
                         keteranganColor = itemView.context.getColor(R.color.rejectColor)
+                        tvStatus.text = "Keterangan : "
+                        tvKeterangan.setTextColor(keteranganColor)
+                        tvKeterangan.text = data.dataTransaction.keterangan
                         btnRequest.visibility = View.VISIBLE
                         btnRequest.setOnClickListener {
                             val position = adapterPosition
@@ -57,6 +63,9 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
 
                     "Pending" -> {
                         keteranganColor = itemView.context.getColor(R.color.pendingColor)
+                        tvStatus.setTextColor(keteranganColor)
+                        tvStatus.text = "Sedang Diproses 1x4 24 jam"
+                        tvKeterangan.visibility = View.GONE
                         btnRequest.visibility = View.VISIBLE
                         btnRequest.setOnClickListener {
                             val position = adapterPosition
@@ -72,9 +81,6 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                         btnRequest.visibility = View.GONE
                     }
                 }
-                tvStatus.setTextColor(keteranganColor)
-                tvKeterangan.setTextColor(keteranganColor)
-                tvKeterangan.text = data.dataTransaction.keterangan;
             }
 
         }

@@ -58,9 +58,21 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                                 onItemClickCallback?.onItemClicked(data)
                             }
                         }
+                    }        "Ditolak" -> {
+                        keteranganColor = itemView.context.getColor(R.color.rejectColor)
+                        tvStatus.text = "Keterangan : ${data.dataTransaction.keterangan}"
+                        tvKeterangan.setTextColor(keteranganColor)
+                        tvKeterangan.text = "Ditolak"
+                        btnRequest.visibility = View.VISIBLE
+                        btnRequest.setOnClickListener {
+                            val position = adapterPosition
+                            if (position != RecyclerView.NO_POSITION) {
+                                onItemClickCallback?.onItemClicked(data)
+                            }
+                        }
                     }
 
-                    "Pending" -> {
+                    "Expired" -> {
                         keteranganColor = itemView.context.getColor(R.color.pendingColor)
                         tvStatus.setTextColor(keteranganColor)
                         tvStatus.text = "Sedang Diproses 1x4 24 jam"
@@ -72,6 +84,14 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                                 onItemClickCallback?.onItemClicked(data)
                             }
                         }
+                    }
+
+                    "Pending" -> {
+                        keteranganColor = itemView.context.getColor(R.color.pendingColor)
+                        tvStatus.setTextColor(keteranganColor)
+                        tvStatus.text = "Sedang Diproses 1x4 24 jam"
+                        tvKeterangan.visibility = View.GONE
+                        btnRequest.visibility = View.GONE
                     }
 
                     else -> {

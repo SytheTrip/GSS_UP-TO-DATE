@@ -13,6 +13,7 @@ import com.example.iuran_gss_2.databinding.FragmentHomeAdminBinding
 import com.example.iuran_gss_2.model.local.Event
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Calendar
 
 
 class HomeAdminFragment : Fragment() {
@@ -58,7 +59,20 @@ class HomeAdminFragment : Fragment() {
         }
     }
 
+    fun getGreeting(): String {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+
+        return when (hour) {
+            in 0..11 -> "Selamat Pagi"
+            in 12..14 -> "Selamat Siang"
+            in 15..17 -> "Selamat Sore"
+            else -> "Selamat Malam"
+        }
+    }
+
     private fun navigate() {
+        binding.tvSelamat.text = getGreeting()
 
         binding.tvAktivitas.setOnClickListener {
             val toAktivitas =

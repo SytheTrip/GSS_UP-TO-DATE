@@ -68,10 +68,10 @@ class HomeFragment : Fragment() {
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
 
         return when (hour) {
-            in 0..11 -> "Selamat pagi"
-            in 12..14 -> "Selamat siang"
-            in 15..17 -> "Selamat sore"
-            else -> "Selamat malam"
+            in 0..11 -> "Selamat Pagi"
+            in 12..14 -> "Selamat Siang"
+            in 15..17 -> "Selamat Sore"
+            else -> "Selamat Malam"
         }
     }
 

@@ -68,22 +68,6 @@
 
 
             <TextView
-                android:id="@+id/tv_hand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:elevation="3dp"
-                android:gravity="center"
-                android:text="👋"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@id/tv_selamat"
-                app:layout_constraintStart_toEndOf="@id/tv_selamat"
-                app:layout_constraintTop_toTopOf="@id/tv_selamat"
-
-                />
-
-            <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -78,6 +78,17 @@ class QrisFragment : Fragment() {
         binding.apply {
             val price = getPrice(kode)
             tvNominalValue.text = formatPrice(price)
+            when (kode) {
+                "IK" -> {
+                    tvPaymentQris.text = "IURAN KEAMANAN"
+                }
+                "IS" -> {
+                    tvPaymentQris.text = "IURAN SAMPAH"
+                }
+                "UK" -> {
+                    tvPaymentQris.text = "UANG KAS"
+                }
+            }
         }
     }
 
@@ -276,6 +287,7 @@ class QrisFragment : Fragment() {
 
 
     private fun handleImage() {
+        binding.tvNamaFile.visibility = View.GONE
         binding.fragmentImage.visibility = View.VISIBLE
         binding.qrisLayout.alpha = 0.6F
         imageView = binding.ivImage

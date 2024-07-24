@@ -1,5 +1,7 @@
 package com.example.iuran_gss_2.ui.admin.verifikasi
 
+import RetrievePDFfromUrl
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -100,13 +102,13 @@ class VerifikasiFragment : Fragment() {
                                 .load(dataTransaksi.bukti)
                                 .into(ivImage)
                         } else {
-                            try {
-                                val url = URLEncoder.encode(dataTransaksi.bukti, "UTF-8")
-                                binding.wvPdf.loadUrl("https://docs.google.com/gview?embedded=true&url=$url")
-                            } catch (e: UnsupportedEncodingException) {
-                                e.printStackTrace()
+                            binding.tvDownload.setOnClickListener {
+                                binding.webLayout.visibility = View.VISIBLE
+                                viewPdf(dataTransaksi.bukti)
+                                binding.wvBack.setOnClickListener {
+                                    binding.webLayout.visibility = View.GONE
+                                }
                             }
-                            binding.wvPdf.visibility = View.VISIBLE
                         }
                     }
                 }
@@ -125,6 +127,17 @@ class VerifikasiFragment : Fragment() {
                     Log.d("Event ", data.toString())
                 }
             }
+        }
+    }
+
+    private fun viewPdf(bukti: String) {
+        try {
+            val uri =  Uri.parse(bukti)
+            val url = URLEncoder.encode(bukti, "UTF-8")
+            RetrievePDFfromUrl(binding.wvPdf).execute(uri.toString())
+//            binding.wvPdf.loadUrl("https://docs.google.com/gview?embedded=true&url=$url")
+        } catch (e: UnsupportedEncodingException) {
+            e.printStackTrace()
         }
     }
 

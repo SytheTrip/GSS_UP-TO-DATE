@@ -1,6 +1,5 @@
 package com.example.iuran_gss_2.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +54,7 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                             }
                         }
                     }
+
                     "Pending" -> {
                         keteranganColor = itemView.context.getColor(R.color.pendingColor)
                         btnRequest.visibility = View.VISIBLE
@@ -65,12 +65,14 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                             }
                         }
                     }
+
                     else -> {
                         keteranganColor = 0
                         tvKeterangan.visibility = View.GONE
                         btnRequest.visibility = View.GONE
                     }
                 }
+                tvStatus.setTextColor(keteranganColor)
                 tvKeterangan.setTextColor(keteranganColor)
                 tvKeterangan.text = data.dataTransaction.keterangan;
             }

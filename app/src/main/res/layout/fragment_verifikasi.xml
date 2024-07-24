@@ -8,13 +8,47 @@
     android:background="@color/white"
     tools:context=".ui.admin.verifikasi.VerifikasiFragment">
 
-    <WebView
-        android:id="@+id/wv_pdf"
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/web_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="20dp"
         android:visibility="gone"
-        />
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/wv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            app:cardCornerRadius="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/gray">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_back" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/wv_pdf"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     <ProgressBar
@@ -91,7 +125,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-
                 />
 
 
@@ -100,7 +133,7 @@
                 android:id="@+id/tv_download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Download PDF"
+                android:text="View PDF"
                 android:textColor="@color/secondary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

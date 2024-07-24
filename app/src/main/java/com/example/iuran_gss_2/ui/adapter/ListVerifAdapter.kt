@@ -38,6 +38,7 @@ class ListVerifAdapter(private var transaction: List<DataTransactionAdmin>) :
                     }
 
                     "Expired" -> {
+                        tvStatus.text = "Pending"
                         statusColor = itemView.context.getColor(R.color.pendingColor)
                         tvStatus.visibility = View.VISIBLE
                     }

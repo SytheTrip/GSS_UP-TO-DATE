@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/nama_input"
+            android:text="Nama : "
             android:textSize="@dimen/history_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
 
-            android:text="@string/jumlah_input"
+            android:text="Jumlah : "
             android:textSize="@dimen/history_size"
             app:layout_constraintStart_toStartOf="parent"
 
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/status"
+            android:text="Status : "
             android:textSize="@dimen/history_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_jumlah" />

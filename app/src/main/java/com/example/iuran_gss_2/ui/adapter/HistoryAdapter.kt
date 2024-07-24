@@ -75,7 +75,7 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
                     "Expired" -> {
                         keteranganColor = itemView.context.getColor(R.color.pendingColor)
                         tvStatus.setTextColor(keteranganColor)
-                        tvStatus.text = "Sedang Diproses 1x4 24 jam"
+                        tvStatus.text = "Sedang Diproses 1x24 jam"
                         tvKeterangan.visibility = View.GONE
                         btnRequest.visibility = View.VISIBLE
                         btnRequest.setOnClickListener {

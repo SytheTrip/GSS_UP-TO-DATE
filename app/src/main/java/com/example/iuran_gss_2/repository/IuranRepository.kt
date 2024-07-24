@@ -62,7 +62,7 @@ class IuranRepository(
             } catch (e: Exception) {
                 e.printStackTrace()
                 Log.d("Indekosku Repository", "Errornya di API")
-                emit(Event.Error(null, context.getString(R.string.email_already_taken)))
+                emit(Event.Error(200, "Email sudah terdaftar"))
             }
         }
 

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.iuran_gss_2.R
 import com.example.iuran_gss_2.databinding.FragmentRegisterBinding
 import com.example.iuran_gss_2.model.local.CreateRequest
 import com.example.iuran_gss_2.model.local.Event
@@ -65,14 +64,22 @@ class RegisterFragment : Fragment() {
                 when (data) {
                     is Event.Success -> {
                         binding.progressBar.visibility = View.GONE
-                        val loginRequest = LoginRequest(email, password)
-                        goLogin(loginRequest)
+                        if (data.data.msg == "Email sudah terdaftar") {
+                            Snackbar.make(
+                                requireView(),
+                                "Email telah digunakan",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            val loginRequest = LoginRequest(email, password)
+                            goLogin(loginRequest)
+                        }
                     }
 
                     is Event.Error -> {
                         Snackbar.make(
                             requireView(),
-                            requireContext().getString(R.string.invalid_login),
+                            "Email telah digunakan",
                             Toast.LENGTH_SHORT
                         ).show()
                         binding.progressBar.visibility = View.GONE
@@ -106,7 +113,7 @@ class RegisterFragment : Fragment() {
                 is Event.Error -> {
                     Snackbar.make(
                         requireView(),
-                        requireContext().getString(R.string.invalid_login),
+                        "Terjadi kesalahan pada server",
                         Toast.LENGTH_SHORT
                     ).show()
                     binding.progressBar.visibility = View.GONE

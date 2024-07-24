@@ -1,7 +1,8 @@
 package com.example.iuran_gss_2.ui.admin.verifikasi
 
-import RetrievePDFfromUrl
+import android.app.ProgressDialog
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,10 +17,17 @@ import com.example.iuran_gss_2.databinding.FragmentVerifikasiBinding
 import com.example.iuran_gss_2.model.local.Event
 import com.example.iuran_gss_2.model.local.TransaksiRequest
 import com.example.iuran_gss_2.model.local.UpdateTransaksiRequest
+import com.github.barteksc.pdfviewer.PDFView
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.BufferedInputStream
+import java.io.IOException
+import java.io.InputStream
 import java.io.UnsupportedEncodingException
+import java.net.HttpURLConnection
+import java.net.URL
 import java.net.URLEncoder
+import javax.net.ssl.HttpsURLConnection
 
 
 class VerifikasiFragment : Fragment() {
@@ -36,6 +44,7 @@ class VerifikasiFragment : Fragment() {
     private lateinit var keteranganInput: String
     private lateinit var fileType: String
     private lateinit var status: String
+    private lateinit var progressDialog: ProgressDialog
 
 
     override fun onCreateView(
@@ -132,9 +141,10 @@ class VerifikasiFragment : Fragment() {
 
     private fun viewPdf(bukti: String) {
         try {
-            val uri =  Uri.parse(bukti)
+            val uri = Uri.parse(bukti)
             val url = URLEncoder.encode(bukti, "UTF-8")
             RetrievePDFfromUrl(binding.wvPdf).execute(uri.toString())
+
 //            binding.wvPdf.loadUrl("https://docs.google.com/gview?embedded=true&url=$url")
         } catch (e: UnsupportedEncodingException) {
             e.printStackTrace()
@@ -169,6 +179,52 @@ class VerifikasiFragment : Fragment() {
                     Log.d("Event ", data.toString())
                 }
             }
+        }
+    }
+
+    private inner class RetrievePDFfromUrl(private val pdfView: PDFView) :
+        AsyncTask<String?, Void?, InputStream?>() {
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            progressDialog = ProgressDialog(requireContext())
+            progressDialog.setMessage("Downloading PDF...")
+            progressDialog.isIndeterminate = true
+            progressDialog.setCancelable(false)
+            progressDialog.show()
+        }
+
+        override fun doInBackground(vararg strings: String?): InputStream? {
+            var inputStream: InputStream? = null
+            try {
+                val url = URL(strings[0])
+                val urlConnection: HttpURLConnection = url.openConnection() as HttpsURLConnection
+                if (urlConnection.responseCode == 200) {
+                    inputStream = BufferedInputStream(urlConnection.inputStream)
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+                return null
+            }
+            return inputStream
+        }
+
+        override fun onPostExecute(inputStream: InputStream?) {
+            progressDialog.dismiss()
+            if (inputStream != null) {
+                pdfView.fromStream(inputStream).load()
+            } else {
+                // Handle error
+                showErrorDialog()
+            }
+        }
+
+        private fun showErrorDialog() {
+            val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            builder.setTitle("Error")
+            builder.setMessage("Failed to download PDF. Please try again.")
+            builder.setPositiveButton("OK", null)
+            builder.show()
         }
     }
 }

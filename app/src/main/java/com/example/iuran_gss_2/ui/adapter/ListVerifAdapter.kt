@@ -3,7 +3,6 @@ package com.example.iuran_gss_2.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iuran_gss_2.R
 import com.example.iuran_gss_2.databinding.PembayaranItemBinding
@@ -33,9 +32,16 @@ class ListVerifAdapter(private var transaction: List<DataTransactionAdmin>) :
                         statusColor = itemView.context.getColor(R.color.pendingColor)
                         tvStatus.visibility = View.VISIBLE
                     }
+
                     "Ditolak" -> {
                         statusColor = itemView.context.getColor(R.color.rejectColor)
                     }
+
+                    "Expired" -> {
+                        statusColor = itemView.context.getColor(R.color.pendingColor)
+                        tvStatus.visibility = View.VISIBLE
+                    }
+
                     else -> {
                         statusColor = itemView.context.getColor(R.color.acceptColor)
                     }

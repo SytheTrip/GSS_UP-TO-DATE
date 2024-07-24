@@ -19,7 +19,6 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
         private lateinit var noPembayaran: String
         private lateinit var jumlah: String
         private lateinit var status: String
-        private var statusColor : Int = 0
         private var keteranganColor: Int = 0
         fun bind(data: ListHistoryItem) {
             binding.apply {
@@ -49,9 +48,9 @@ class HistoryAdapter(private var transaction: List<ListHistoryItem>) :
 
                     "Ditolak" -> {
                         keteranganColor = itemView.context.getColor(R.color.rejectColor)
-                        tvStatus.text = "Keterangan : "
+                        tvStatus.text = "Keterangan : ${data.dataTransaction.keterangan}"
                         tvKeterangan.setTextColor(keteranganColor)
-                        tvKeterangan.text = data.dataTransaction.keterangan
+                        tvKeterangan.text = "Ditolak"
                         btnRequest.visibility = View.VISIBLE
                         btnRequest.setOnClickListener {
                             val position = adapterPosition

@@ -74,6 +74,7 @@
     <string name="acceptText">Transaksi anda diterima</string>
     <string name="something_error">Terjadi kesalahan pada server</string>
     <string name="download_pdf">Download PDF</string>
+    <string name="tentang_deskripsi">Aplikasi Iuran GSS dirancang guna melengkapi tugas projek berupa penulisan ilmiah dari Universitas Gunadarma, sebagai syarat kelulusan jenjang S1 pada jurusan Informatika</string>
 
 
 </resources>

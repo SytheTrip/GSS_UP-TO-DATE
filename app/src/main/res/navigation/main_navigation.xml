@@ -40,6 +40,11 @@
             app:destination="@id/historyFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_homeFragment_to_tentangFragment"
+            app:destination="@id/tentangFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -171,4 +176,9 @@
             android:id="@+id/action_splashFragment_to_homeAdminFragment"
             app:destination="@id/homeAdminFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/tentangFragment"
+        android:name="com.example.iuran_gss_2.ui.tentang.TentangFragment"
+        android:label="fragment_tentang"
+        tools:layout="@layout/fragment_tentang" />
 </navigation>

@@ -266,4 +266,43 @@
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_tentang"
+        android:layout_width="@dimen/width_card"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card_bantuan"
+        app:layout_constraintTop_toTopOf="@id/card_bantuan"
+        app:layout_constraintBottom_toBottomOf="@id/card_bantuan"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_tentang"
+                android:layout_width="@dimen/width_card"
+                android:layout_height="@dimen/height_card"
+                android:background="@color/primary"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingTop="32dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="32dp"
+                android:text="TENTANG"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -164,6 +164,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(toHistory)
         }
 
+        binding.cardTentang.setOnClickListener {
+            val toTentang = HomeFragmentDirections.actionHomeFragmentToTentangFragment()
+            findNavController().navigate(toTentang)
+        }
     }
 
 }
